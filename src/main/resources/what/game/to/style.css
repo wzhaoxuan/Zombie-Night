@@ -1,3 +1,11 @@
-.ImageView{
+ImageView {
     -fx-image: url("/Images/zombie.gif");
+    -fx-fit-width: 300;
+    -fx-fit-height: 200;
+    -fx-preserve-ratio: true;
+    -fx-alignment: center;
 }
+
+/*AnchorPane{*/
+/*    -fx-background-color: black;*/
+/*}*/
