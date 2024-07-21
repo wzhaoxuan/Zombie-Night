@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
    <children>
       <HBox layoutY="43.0" prefHeight="67.0" prefWidth="159.0">
          <children>
@@ -13,7 +13,7 @@
             <Label text="0" />
          </children>
       </HBox>
-      <ImageView fx:id="zombieImageView" fitHeight="127.0" fitWidth="140.0" layoutX="116.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true"/>
-      <ImageView fx:id="zombieImageView" fitHeight="127.0" fitWidth="140.0" layoutX="360.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="zombieImageView" fitHeight="127.0" fitWidth="140.0" layoutX="116.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView" />
+      <ImageView fx:id="zombieImageView" fitHeight="127.0" fitWidth="140.0" layoutX="360.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView" />
    </children>
 </AnchorPane>
