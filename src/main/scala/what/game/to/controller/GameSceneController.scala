@@ -27,14 +27,15 @@ class GameSceneController(
 
   private def createZombies(): Unit = {
     println("Creating zombies")
-    val zombieWidth = 300 // Adjust this value as needed
-    val zombieHeight = 300 // Adjust this value as needed
+    val zombieWidth = 300
+    val zombieHeight = 300
 
     for (_ <- 1 to zombieNumber){
       val zombie = new ImageView()
       zombie.getStyleClass.add("ImageView") // Add a style class to the ImageView
       zombie.image = new Image("/Images/zombie.gif")
 
+      // Random position
       val randomX = Random.nextDouble() * (gameArea.width.value + zombieWidth)
       val randomY = Random.nextDouble() * (gameArea.height.value + zombieHeight)
 
@@ -43,9 +44,19 @@ class GameSceneController(
 
       println(s"Coordinate: [$randomX, $randomY]")
       // Add zombie image in the Anchor Pane
+      zombie.onMouseClicked = (e: MouseEvent) => handleZombieClick(zombie)
       gameArea.children.add(zombie)
     }
 
 
+  }
+
+  private def handleZombieClick(zombie: ImageView): Unit = {
+    // Remove the clicked zombie
+    gameArea.children.remove(zombie)
+
+    // Update score
+    score += 1
+    scoreLabel.text = score.toString
   }
 }
