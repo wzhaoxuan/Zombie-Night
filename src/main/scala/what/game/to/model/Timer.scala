@@ -8,7 +8,7 @@ import scalafx.Includes._
 
 class Timer(totalTime: Int, timerLabel: Label, createZombies: () => Unit) {
   private var remainingTime = totalTime
-  private val spawnZombieTime = 5
+  private val spawnZombieTime = 13
 
   def start(): Unit = {
     val timeline = new Timeline {

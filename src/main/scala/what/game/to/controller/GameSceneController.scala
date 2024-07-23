@@ -1,12 +1,12 @@
 package what.game.to.controller
-import what.game.to.model.Zombie
-import what.game.to.model.Timer
+import what.game.to.model.{NormalZombie, SpeedZombie, Timer}
 import what.game.to.MainApp
 import scalafx.scene.control.Label
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.util.Duration
+
 import scala.util.Random
 
 @sfxml
@@ -19,7 +19,7 @@ class GameSceneController(
   private val totalTime = 120
   private var score = 0
   private val zombieNumber = 10
-  private val spawnZombieNum = Random.nextInt(15) + 5
+  private val spawnZombieNum = 7
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -28,8 +28,13 @@ class GameSceneController(
   }
 
   private def createZombies(zombieNum: Int): Unit = {
-    val zombie = new Zombie(gameArea, handleZombieClick)
-      zombie.createZombies(zombieNum)
+    val normalZombie = new NormalZombie(gameArea, handleZombieClick)
+    val speedZombie = new SpeedZombie(gameArea, handleZombieClick)
+
+    println("Normal Zombie")
+    normalZombie.createZombies(zombieNum)
+    println("SpeedZombie")
+    speedZombie.createZombies(zombieNum)
     }
 
   private def handleZombieClick(): Unit = {
