@@ -23,11 +23,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label fx:id="timerLabel" alignment="TOP_CENTER" prefHeight="71.0" prefWidth="247.0" text="Time : 120" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                    <font>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="71.0" prefWidth="142.0" text="Time: ">
+                     <font>
                         <Font name="System Bold" size="49.0" />
-                    </font>
-                </Label>
+                     </font>
+                  </Label>
+                      <Label fx:id="timerLabel" alignment="TOP_CENTER" prefHeight="71.0" prefWidth="92.0" text="120">
+                          <font>
+                              <Font name="System Bold" size="49.0" />
+                          </font>
+                      </Label>
+               </children>
+            </HBox>
                 <HBox prefHeight="25.0" prefWidth="84.0" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                     <children>
                         <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:">

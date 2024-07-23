@@ -8,7 +8,7 @@ import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
 import what.game.to.controller.{GameSceneController, WelcomeController}
 import scalafx.Includes._
-import scalafx.stage.{Modality, Stage}
+import scalafx.stage.{Modality, Stage, StageStyle}
 
 object MainApp extends JFXApp {
 
@@ -21,6 +21,7 @@ object MainApp extends JFXApp {
   // Set up the primary stage
   stage = new PrimaryStage {
     title = "ZombieStrike"
+    initStyle(StageStyle.Undecorated)
     scene = new Scene {
       root = rootLayout
     }

@@ -6,6 +6,6 @@ ImageView {
     -fx-alignment: center;
 }
 
-/*GridPane{*/
-/*    -fx-background-image: url("/Images/zombie-background.jpg");*/
-/*}*/
+GridPane{
+    -fx-background-image: url("/Images/zombie-background.jpg");
+}
