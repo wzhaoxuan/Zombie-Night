@@ -19,7 +19,8 @@ class GameSceneController(
   private val totalTime = 120
   private var score = 0
   private val zombieNumber = 10
-  private val spawnZombieNum = 7
+  private val spawnZombieNum = 10
+  private val spawnZombieTime = 15
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -45,7 +46,7 @@ class GameSceneController(
 
   // Timer count down function
   private def startTimer(): Unit = {
-    val time = new Timer(totalTime, timerLabel, () => createZombies(spawnZombieNum))
+    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum))
     time.start()
   }
 
