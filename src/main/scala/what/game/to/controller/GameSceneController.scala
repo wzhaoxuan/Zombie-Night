@@ -43,6 +43,7 @@ class GameSceneController(
       val zombie = new ImageView()
       zombie.getStyleClass.add("ImageView") // Add a style class to the ImageView
       zombie.image = new Image("/Images/zombie.gif")
+      
 
       // Random position within the GameScene
       val randomX = Math.abs(Random.nextDouble() * (gameArea.width.value - zombieWidth))
