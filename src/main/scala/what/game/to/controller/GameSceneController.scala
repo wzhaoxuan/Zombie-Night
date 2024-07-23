@@ -1,5 +1,6 @@
 package what.game.to.controller
-import  what.game.to.model.Zombie
+import what.game.to.model.Zombie
+import what.game.to.model.Timer
 import scalafx.scene.control.Label
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
@@ -15,11 +16,11 @@ class GameSceneController(
 
 
   private val totalTime = 120
-  private var remainingTime = totalTime
   private var score = 0
   private val zombieNumber = 10
   private val spawnZombieTime = 5
   private val spawnZombieNum = 10
+
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -40,18 +41,12 @@ class GameSceneController(
 
   // Timer count down function
   private def startTimer(): Unit = {
-    val timeline = new Timeline{
-      cycleCount = totalTime
-      keyFrames = Seq(
-        KeyFrame(Duration(100), onFinished = _ => {
-          remainingTime -= 1
-          timerLabel.text = remainingTime.toString
-          if(remainingTime % spawnZombieTime == 0){
-            createZombies(spawnZombieNum)
-          }
-        })
-      )
-    }
-    timeline.play()
+    val time = new Timer(totalTime, timerLabel, () => createZombies(spawnZombieNum))
+    time.start()
+  }
+
+
+  def exit(): Unit = {
+    System.exit(0)
   }
 }

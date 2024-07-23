@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -62,6 +64,12 @@
                     </padding>
                 </HBox>
                 <Label text="xxxx" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <MenuButton alignment="TOP_RIGHT" mnemonicParsing="false" text="MenuButton" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
             </children>
         </GridPane>
     </children>
