@@ -21,11 +21,12 @@ class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit) {
       zombie.getStyleClass.add("ImageView") // Add a style class to the ImageView
       zombie.image = new Image("/Images/zombie.gif")
       // Set a random position within the game area
-      val randomX = Random.nextDouble() * (gameArea.width.value - zombieWidth)
-      zombie.layoutX = randomX
+//      val randomX = Random.nextDouble() * (gameArea.width.value - zombieWidth)
+      val startX = -zombieWidth - Random.nextInt(700)
+      zombie.layoutX = startX
       zombie.layoutY = 350
 
-      println(s"Zombie created at ($randomX, 300)")
+      println(s"Zombie created at ($startX, 300)")
       // Event Handler to count Zombie Click
       zombie.onMouseClicked = (e: MouseEvent) => {
         gameArea.children.remove(zombie)
@@ -39,7 +40,7 @@ class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit) {
         keyFrames = Seq({
           KeyFrame(Duration(30), onFinished = _ => {
             if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
-              zombie.layoutX.value += 2 // moving speed
+              zombie.layoutX.value += 4 // moving speed
             }
           })
         })

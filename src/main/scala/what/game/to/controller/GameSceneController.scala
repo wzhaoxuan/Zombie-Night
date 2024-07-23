@@ -7,6 +7,7 @@ import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.util.Duration
+import scala.util.Random
 
 @sfxml
 class GameSceneController(
@@ -18,7 +19,7 @@ class GameSceneController(
   private val totalTime = 120
   private var score = 0
   private val zombieNumber = 10
-  private val spawnZombieNum = 10
+  private val spawnZombieNum = Random.nextInt(15) + 5
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
