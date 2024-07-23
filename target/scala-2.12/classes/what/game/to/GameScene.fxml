@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.HBox?>
 
 <AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: black;" styleClass="ImageView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
-   <children>
-      <HBox layoutX="20.0" layoutY="43.0" prefHeight="25.0" prefWidth="84.0">
-         <children>
-            <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:" />
-            <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="21.0" prefWidth="28.0" text="0" />
-         </children>
-      </HBox>
-   </children>
+    <children>
+        <HBox layoutX="20.0" layoutY="43.0" prefHeight="25.0" prefWidth="84.0">
+            <children>
+                <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:" textFill="#fcfcfc" />
+                <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="21.0" prefWidth="28.0" text="0" textFill="WHITE" />
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

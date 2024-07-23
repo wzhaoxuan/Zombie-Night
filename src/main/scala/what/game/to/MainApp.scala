@@ -40,7 +40,7 @@ object MainApp extends JFXApp {
     control.initialize()
 
   }
-    def showWelcome(): Unit = {
+  def showWelcome(): Unit = {
     val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
     val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
     welcomeSceneLoader.load()
