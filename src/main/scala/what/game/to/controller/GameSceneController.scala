@@ -44,9 +44,9 @@ class GameSceneController(
       zombie.getStyleClass.add("ImageView") // Add a style class to the ImageView
       zombie.image = new Image("/Images/zombie.gif")
 
-      // Random position
-      val randomX = Random.nextDouble() * (gameArea.width.value + zombieWidth)
-      val randomY = Random.nextDouble() * (gameArea.height.value + zombieHeight)
+      // Random position within the GameScene
+      val randomX = Math.abs(Random.nextDouble() * (gameArea.width.value - zombieWidth))
+      val randomY = Math.abs(Random.nextDouble() * (gameArea.height.value - zombieHeight))
 
       zombie.layoutX = randomX
       zombie.layoutY = randomY
@@ -84,7 +84,6 @@ class GameSceneController(
         })
       )
     }
-
     timeline.play()
   }
 }

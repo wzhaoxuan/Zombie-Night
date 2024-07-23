@@ -9,6 +9,4 @@ class WelcomeController{
   def getStart(): Unit = {
     MainApp.showGameScene()
   }
-
-
 }
