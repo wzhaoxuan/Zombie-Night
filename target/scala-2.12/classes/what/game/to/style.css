@@ -1,11 +1,11 @@
-ImageView {
-    -fx-image: url("/Images/NormalZombie.gif");
-    -fx-fit-width: 300;
-    -fx-fit-height: 200;
-    -fx-preserve-ratio: true;
-    -fx-alignment: center;
-}
+/*ImageView {*/
+/*    !*-fx-image: url("/Images/NormalZombie.gif");*!*/
+/*    -fx-fit-width: 300;*/
+/*    -fx-fit-height: 200;*/
+/*    -fx-preserve-ratio: true;*/
+/*    -fx-alignment: center;*/
+/*}*/
 
 GridPane{
-    -fx-background-image: url("/Images/zombie-background.jpg");
+    -fx-background-image: url("/Images/background.jpg");
 }
