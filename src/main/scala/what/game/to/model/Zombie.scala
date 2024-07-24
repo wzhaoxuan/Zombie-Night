@@ -7,14 +7,16 @@ import scalafx.scene.input.MouseEvent
 import scala.util.Random
 import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
+import scalafx.scene.control.ProgressBar
 import scalafx.util.Duration
 
-abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetImage: ImageView) {
+abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetImage: ImageView, healthPoint: ProgressBar) {
   def imagePath: String
   def zombieWidth: Int
   def zombieHeight: Int
   def speed: Int
   def requiredClicks: Int
+  def attackDamage: Int
 
 
     def createZombies(zombieCount: Int): Unit = {
@@ -58,33 +60,45 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
               if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
                 // Check if the zombie has reached the stopping point
                 val futureX = zombie.layoutX.value + speed
-                if ((futureX + zombie.fitWidth.toInt) < stopWidth) {
+                if ((futureX + zombie.fitWidth.intValue()) < stopWidth) {
                   zombie.layoutX.value += speed // move at the defined speed
+                } else if (zombie.layoutX.value >= targetImage.layoutX.value) {
+                  reduceHealth()
                 }
               }
             })
           })
+
+          private def reduceHealth() = {
+            val initialHealth = healthPoint.progress.value
+            val currentHealth = Math.max(0, initialHealth - (attackDamage / 100.0))
+            healthPoint.progress = currentHealth
+            println(currentHealth)
+          }
         }
         timeline.play()
       }
     }
 }
 
-
 // Normal Zombie
-class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView) extends Zombie(_gameArea, _onZombieClicked, _targetImage){
+class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
+  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
   override def imagePath = "/Images/DefenseZombie.gif"
   override def zombieHeight = 300
   override def zombieWidth = 300
   override def speed = 4
   override def requiredClicks = 2
+  override def attackDamage = 1
 }
 
 // Speed Zombie
-class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView) extends Zombie(_gameArea, _onZombieClicked, _targetImage){
+class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
+  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
   override def imagePath = "/Images/SpeedZombie.gif"
   override def zombieHeight = 300
   override def zombieWidth = 300
   override def speed = 10
   override def requiredClicks = 1
+  override def attackDamage = 1
 }

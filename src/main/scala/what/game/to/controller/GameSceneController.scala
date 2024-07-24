@@ -1,7 +1,7 @@
 package what.game.to.controller
 import what.game.to.model.{NormalZombie, SpeedZombie, Timer}
 import what.game.to.MainApp
-import scalafx.scene.control.Label
+import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 import scalafx.animation.{KeyFrame, Timeline}
@@ -15,7 +15,8 @@ class GameSceneController(
                            private val scoreLabel: Label,
                            private val gameArea: AnchorPane,
                            private val timerLabel: Label,
-                           private val targetImage: ImageView
+                           private val targetImage: ImageView,
+                           private var healthPoint: ProgressBar
                          ) {
 
   private val totalTime = 120
@@ -31,8 +32,8 @@ class GameSceneController(
   }
 
   private def createZombies(zombieNum: Int): Unit = {
-    val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage)
-    val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage)
+    val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint)
+    val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint)
 
     println("Normal Zombie")
     normalZombie.createZombies(zombieNum)
