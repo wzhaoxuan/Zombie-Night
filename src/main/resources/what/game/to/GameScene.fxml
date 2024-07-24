@@ -12,9 +12,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="ImageView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
+<AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-color: black;" styleClass="ImageView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
     <children>
         <GridPane layoutX="-7.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -42,31 +43,33 @@
                       </Label>
                </children>
             </HBox>
-                <HBox prefHeight="25.0" prefWidth="84.0" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
-                    <children>
-                        <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:">
-                            <font>
-                                <Font name="System Bold" size="15.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="21.0" prefWidth="28.0" text="0" />
-                        <HBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="158.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="500.0">
+                          <children>
+                              <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:">
+                                  <font>
+                                      <Font name="System Bold" size="15.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="21.0" prefWidth="28.0" text="0" />
+                          </children>
+                          <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                          </padding>
+                      </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0">
                             <children>
-                                <Label text="Zombie:  ">
+                                <Label text=" Zombie:  ">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label text="200" />
-                                <Label text="/200" />
+                                <Label fx:id="zombieLabel" text="0" />
                             </children>
                         </HBox>
-                    </children>
-                    <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </padding>
-                </HBox>
-                <Label text="xxxx" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+               </children>
+            </VBox>
             <MenuButton alignment="TOP_RIGHT" mnemonicParsing="false" text="MenuButton" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
@@ -75,7 +78,7 @@
             </MenuButton>
             <AnchorPane prefHeight="338.0" prefWidth="369.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ProgressBar fx:id="healthPoint" layoutX="189.0" layoutY="89.0" prefHeight="38.0" prefWidth="306.0" progress="100" />
+                  <ProgressBar fx:id="healthPoint" layoutX="189.0" layoutY="89.0" prefHeight="38.0" prefWidth="306.0" progress="1.0" />
                   <ImageView fx:id="targetImage" fitHeight="373.0" fitWidth="299.0" layoutX="193.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../OneDrive/Pictures/Saved%20Pictures/Septh%20Curry.jpg" />
@@ -83,6 +86,25 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="114.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <AnchorPane prefHeight="266.0" prefWidth="17.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="1.0" layoutY="187.0" text="Power: " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="34.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <ImageView fitHeight="100.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/Power/Bomb.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
             </children>
         </GridPane>
     </children>
