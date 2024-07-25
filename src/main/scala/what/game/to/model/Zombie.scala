@@ -28,7 +28,6 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 
     // Define the stopping position using the ImageView's layout values
     val stopWidth = gameArea.width.value - targetImage.layoutX.value // X position of the ImageView
-    println(targetImage.layoutX.value)
 
     for (_ <- 0 until zombieCount) {
       val zombie = new ImageView()
@@ -45,7 +44,6 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
       println(s"Zombie created at ($startX, 300)")
 
       var remainingClicks = requiredClicks
-
       // Event Handler to count Zombie Click
       zombie.onMouseClicked = (e: MouseEvent) => {
         remainingClicks -= 1
@@ -54,7 +52,6 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
           onZombieClicked()
         }
       }
-
       gameArea.children.add(zombie)
 
       // Animation for zombie moving to right
@@ -64,14 +61,11 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
           KeyFrame(Duration(30), onFinished = _ => {
             if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
               // Check if the zombie has reached the stopping point
-              val futureX = zombie.layoutX.value + speed
-              println("Future" + futureX )
-              if ((futureX + zombie.fitWidth.toInt) <= stopWidth) {
-                println("Future + zombiewidth " + (futureX + zombie.fitWidth.toInt))
+              val zombieMovement = zombie.layoutX.value + speed
+              if ((zombieMovement + zombie.fitWidth.toInt) <= stopWidth) {
                 zombie.layoutX.value += speed // move at the defined speed
               }
               if(zombie.layoutX.value + zombieWidth >= (gameArea.width.value - targetImage.fitWidth.value)){
-                println("Zombie size: " + (zombie.layoutX.value + zombieWidth) + ">=" + (gameArea.width.value - targetImage.fitWidth.value))
                 if(remainingClicks > 0){
                   reduceHealth()
                 }
