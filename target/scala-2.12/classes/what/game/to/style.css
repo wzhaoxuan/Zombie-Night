@@ -6,14 +6,48 @@
 /*    -fx-alignment: center;*/
 /*}*/
 
-GridPane{
+.backgound{
     -fx-background-image: url("/Images/Backgroud/background.jpg");
 }
 
 .label{
     -fx-text-fill: white;
+    -fx-font-family: Jokerman;
+
 }
 
 .button{
     -fx-background-image: url("/Images/Power/Bomb.gif");
+}
+
+.welcomebutton{
+    -fx-background-color: Grey;
+    -fx-font-family: "Franklin Gothic Heavy";
+    -fx-text-fill: white;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.easybutton, .normalbutton, .hardbutton {
+
+    -fx-font-family: "Franklin Gothic Heavy";
+    -fx-text-fill: white;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.easybutton{
+    -fx-background-color: #009999;
+}
+
+.normalbutton{
+    -fx-background-color: Grey;
+    -fx-font-family: "Franklin Gothic Heavy";
+    -fx-text-fill: white;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.hardbutton{
+    -fx-background-color: #990000;
+    -fx-font-family: "Franklin Gothic Heavy";
+    -fx-text-fill: white;
+    -fx-border-radius: 10 10 10 10;
 }

@@ -5,7 +5,6 @@ import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 import scalafx.scene.image.ImageView
-import scalafx.scene.input.MouseEvent
 import scalafx.Includes._
 
 import scala.util.Random

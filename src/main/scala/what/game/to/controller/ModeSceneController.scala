@@ -1,8 +1,9 @@
 package what.game.to.controller
 import what.game.to.MainApp
 import scalafx.scene.control.Button
-import scalafx.scene.input.MouseEvent
+import scalafx.event.ActionEvent
 import scalafxml.core.macros.sfxml
+import scalafx.Includes._
 
 @sfxml
 class ModeSceneController(
@@ -12,9 +13,9 @@ class ModeSceneController(
                          ) {
 
   // Initialize button actions using ScalaFX's onAction with lambda
-  easyMode.onAction = (e: javafx.event.ActionEvent) => handleEasyButton()
-  normalMode.onAction = (e: javafx.event.ActionEvent) => handleNormalButton()
-  hardMode.onAction = (e: javafx.event.ActionEvent) => handleHardButton()
+  easyMode.onAction = (e: ActionEvent) => handleEasyButton()
+  normalMode.onAction = (e: ActionEvent) => handleNormalButton()
+  hardMode.onAction = (e: ActionEvent) => handleHardButton()
 
   // Handle button actions
   def handleEasyButton(): Unit = {
