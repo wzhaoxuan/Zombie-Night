@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="backgound" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
+<AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
     <children>
         <GridPane prefHeight="800.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -92,12 +92,15 @@
                         <Image url="@../../../Images/Power/Bomb.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="100.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/Power/Bomb.gif" />
+                     </image></ImageView>
                </children>
             </HBox>
             <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ProgressBar fx:id="healthPoint" layoutX="193.0" layoutY="104.0" prefHeight="38.0" prefWidth="310.0" progress="1.0" />
+                  <ProgressBar fx:id="healthPoint" layoutX="193.0" layoutY="104.0" prefHeight="38.0" prefWidth="310.0" progress="1.0" styleClass="healthPoint" stylesheets="@style.css" />
                   <ImageView fx:id="targetImage" fitHeight="373.0" fitWidth="299.0" layoutX="200.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../OneDrive/Pictures/Saved%20Pictures/Septh%20Curry.jpg" />

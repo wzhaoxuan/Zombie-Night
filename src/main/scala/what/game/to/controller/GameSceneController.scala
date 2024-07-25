@@ -1,5 +1,5 @@
 package what.game.to.controller
-import what.game.to.model.{NormalZombie, SpeedZombie, Timer}
+import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer, Zombie}
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
@@ -18,7 +18,7 @@ class GameSceneController(
                            private var healthPoint: ProgressBar,
                            private val zombieLabel: Label
                          ) {
-  private var difficulty: String = "Easy" // Default difficulty
+  private var difficulty: String = _
   private val totalTime = 120
   private var score = 0
   private val initialZombieNum = 10
@@ -52,7 +52,8 @@ class GameSceneController(
         maxZombies = 150
 
       case "Hard" =>
-        spawnZombieNum = 15
+        spawnZombieNum = 3
+        spawnZombieTime = 15
         maxZombies = 200
     }
   }
@@ -60,35 +61,39 @@ class GameSceneController(
   private def createZombies(zombieNum: Int): Unit = {
     val zombiesLeft = maxZombies - currentZombieCount
 
-    if (zombiesLeft > 1) {
+    if (zombiesLeft > 0) {
       // Adjust zombie counts based on difficulty
-      val (normalZombieCount, speedZombieCount): (Int, Int) = {
+      val (normalZombieCount, speedZombieCount, defenseZombieCount): (Int, Int, Int) = {
         difficulty match {
           case "Easy" =>
             val normalZombies = (math.min(zombieNum, zombiesLeft))
-            (normalZombies, 0)
+            (normalZombies, 0, 0)
           case "Normal" =>
             val maxNormalZombies = zombiesLeft / 2
             val maxSpeedZombies = zombiesLeft
             // return the number of zombie
-            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
+            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies), 0)
           case "Hard" =>
-            val maxNormalZombies = zombiesLeft / 3
+            val maxNormalZombies = zombiesLeft / 2
             val maxSpeedZombies = zombiesLeft
+            val maxDefenseZombies = zombiesLeft / 2
             // return the number of zombie
-            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
+            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies), math.min(zombieNum, maxDefenseZombies))
         }
       }
 
       val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint)
       val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint)
+      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint)
 
-      println("Normal Zombie")
+      println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)
       println("SpeedZombie")
       speedZombie.createZombies(speedZombieCount)
+      println("DefenseZombie")
+      defenseZombie.createZombies(defenseZombieCount)
 
-      currentZombieCount += (normalZombieCount + speedZombieCount)
+      currentZombieCount += (normalZombieCount + speedZombieCount + defenseZombieCount)
       updateZombieLabel()
     }
     }

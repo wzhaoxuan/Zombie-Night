@@ -6,12 +6,12 @@
 /*    -fx-alignment: center;*/
 /*}*/
 
-.backgound{
-    -fx-background-image: url("/Images/Backgroud/background.jpg");
+.background{
+    -fx-background-image: url("/Images/Backgroud/zombie-background.jpg");
 }
 
 .label{
-    -fx-text-fill: white;
+    -fx-text-fill: #008080;
     -fx-font-family: Jokerman;
 
 }
@@ -20,34 +20,38 @@
     -fx-background-image: url("/Images/Power/Bomb.gif");
 }
 
-.welcomebutton{
+.welcomeButton{
     -fx-background-color: Grey;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
     -fx-border-radius: 10 10 10 10;
 }
 
-.easybutton, .normalbutton, .hardbutton {
+.easyButton, .normalButton, .hardButton {
 
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
     -fx-border-radius: 10 10 10 10;
 }
 
-.easybutton{
+.easyButton{
     -fx-background-color: #009999;
 }
 
-.normalbutton{
+.normalButton{
     -fx-background-color: Grey;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
     -fx-border-radius: 10 10 10 10;
 }
 
-.hardbutton{
+.hardButton{
     -fx-background-color: #990000;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
     -fx-border-radius: 10 10 10 10;
+}
+
+.healthPoint{
+    -fx-border-style: none;
 }

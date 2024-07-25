@@ -79,7 +79,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
   }
 
   private def reduceHealth() = {
-    val newHealth = healthPoint.progress - attackDamage * 0.001 // Adjust the decrement factor as needed
+    val newHealth = healthPoint.progress - attackDamage * 0.0005 // Adjust the decrement factor as needed
     healthPoint.progress = math.max(newHealth.toDouble, 0)
     if (healthPoint.progress == 0) {
       // Handle game over or health depletion scenario
@@ -94,13 +94,13 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 // Normal Zombie
 class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = "/Images/Zombie/DefenseZombie.gif"
+  override def imagePath = "/Images/Zombie/NormalZombie.gif"
   override def zombieWidth = 300
   override def zombieHeight = 300
   override def speed = 4
   override def requiredClicks = 3
-  override def attackDamage = 1
-  override def layoutY = 350
+  override def attackDamage = 2
+  override def layoutY = 360
 }
 
 // Speed Zombie
@@ -113,4 +113,15 @@ class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetIm
   override def requiredClicks = 2
   override def attackDamage = 1
   override def layoutY = 450
+}
+
+class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
+  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
+  override def imagePath = "/Images/Zombie/DefenseZombie.gif"
+  override def zombieWidth = 300
+  override def zombieHeight = 400
+  override def speed = 2
+  override def requiredClicks = 5
+  override def attackDamage = 3
+  override def layoutY = 280
 }
