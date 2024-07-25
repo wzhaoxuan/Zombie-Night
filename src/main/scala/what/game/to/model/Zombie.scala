@@ -24,9 +24,11 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 
   def createZombies(zombieCount: Int): Unit = {
     println("Creating zombies")
+    println(gameArea.width.value)
 
     // Define the stopping position using the ImageView's layout values
-    val stopWidth = gameArea.width.value - targetImage.layoutX.value + 50 // X position of the ImageView
+    val stopWidth = gameArea.width.value - targetImage.layoutX.value // X position of the ImageView
+    println(targetImage.layoutX.value)
 
     for (_ <- 0 until zombieCount) {
       val zombie = new ImageView()
@@ -36,8 +38,8 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
       zombie.fitHeight = zombieHeight
 
       // Set a random position within the game area
-      //        val randomX = Random.nextDouble() * (gameArea.width.value - zombieWidth)
-      val startX = -zombieWidth - Random.nextInt(700)
+      // val randomX = Random.nextDouble() * (gameArea.width.value - zombieWidth)
+      val startX = -zombieWidth - Random.nextInt(600)
       zombie.layoutX = startX
       zombie.layoutY = layoutY
       println(s"Zombie created at ($startX, 300)")
@@ -63,9 +65,16 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
             if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
               // Check if the zombie has reached the stopping point
               val futureX = zombie.layoutX.value + speed
+              println("Future" + futureX )
               if ((futureX + zombie.fitWidth.toInt) <= stopWidth) {
+                println("Future + zombiewidth " + (futureX + zombie.fitWidth.toInt))
                 zombie.layoutX.value += speed // move at the defined speed
-                checkCollision(zombie)
+              }
+              if(zombie.layoutX.value + zombieWidth >= (gameArea.width.value - targetImage.fitWidth.value)){
+                println("Zombie size: " + (zombie.layoutX.value + zombieWidth) + ">=" + (gameArea.width.value - targetImage.fitWidth.value))
+                if(remainingClicks > 0){
+                  reduceHealth()
+                }
               }
             }
           })
@@ -75,18 +84,8 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
     }
   }
 
-  private def checkCollision(zombie: ImageView): Unit = {
-    val zombieBounds = zombie.boundsInParent.value
-    val targetBounds = targetImage.boundsInParent.value
-
-    if (zombieBounds.intersects(targetBounds)) {
-      println("Image touched")
-      reduceHealth()
-    }
-  }
-
   private def reduceHealth() = {
-    val newHealth = healthPoint.progress - attackDamage * 0.1 // Adjust the decrement factor as needed
+    val newHealth = healthPoint.progress - attackDamage * 0.001 // Adjust the decrement factor as needed
     healthPoint.progress = math.max(newHealth.toDouble, 0)
     if (healthPoint.progress == 0) {
       // Handle game over or health depletion scenario
@@ -102,7 +101,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
   override def imagePath = "/Images/Zombie/DefenseZombie.gif"
-  override def zombieWidth = 350
+  override def zombieWidth = 300
   override def zombieHeight = 300
   override def speed = 4
   override def requiredClicks = 2

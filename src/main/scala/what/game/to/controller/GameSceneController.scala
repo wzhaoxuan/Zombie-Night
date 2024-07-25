@@ -41,7 +41,7 @@ class GameSceneController(
   private def createZombies(zombieNum: Int): Unit = {
     val zombiesLeft = maxZombies - currentZombieCount
 
-    if (zombiesLeft > 0) {
+    if (zombiesLeft > 1) {
       // Adjust zombie counts based on difficulty
       val (normalZombieCount, speedZombieCount): (Int, Int) = {
         difficulty match {
