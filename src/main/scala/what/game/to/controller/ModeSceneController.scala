@@ -20,16 +20,16 @@ class ModeSceneController(
   // Handle button actions
   def handleEasyButton(): Unit = {
     MainApp.setDifficulty("Easy")
-    MainApp.showGameScene()
+    MainApp.showRule()
   }
 
   def handleNormalButton(): Unit = {
     MainApp.setDifficulty("Normal")
-    MainApp.showGameScene()
+    MainApp.showRule()
   }
 
   def handleHardButton(): Unit = {
     MainApp.setDifficulty("Hard")
-    MainApp.showGameScene()
+    MainApp.showRule()
   }
 }

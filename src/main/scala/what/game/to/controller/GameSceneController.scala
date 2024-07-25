@@ -34,6 +34,7 @@ class GameSceneController(
     updateZombieLabel()
   }
 
+  // Need to modify
   def setDifficulty(diff: String): Unit = {
     difficulty = diff
     difficultySettings()

@@ -13,7 +13,6 @@
 .label{
     -fx-text-fill: #008080;
     -fx-font-family: Jokerman;
-
 }
 
 .button{
@@ -54,4 +53,18 @@
 
 .healthPoint{
     -fx-border-style: none;
+}
+
+.description{
+    -fx-text-alignment: justify;
+    -fx-max-width: 1350;
+    -fx-font-size: 20;
+    -fx-font-family: "Bookman Old Style";
+    -fx-text-fill: black;
+    -fx-wrap-text: true;
+}
+
+.rule{
+    -fx-font-size: 65;
+    /*-fx-max-width: fit-content;*/
 }

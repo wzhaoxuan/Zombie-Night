@@ -6,7 +6,7 @@ import scalafx.scene.Scene
 import scalafx.scene.layout.BorderPane
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{GameSceneController, ModeSceneController, WelcomeController}
+import what.game.to.controller.{GameSceneController, ModeSceneController, RuleSceneController, WelcomeController}
 import scalafx.Includes._
 import scalafx.stage.{Modality, Stage, StageStyle}
 
@@ -65,7 +65,19 @@ object MainApp extends JFXApp {
     stage.scene = new Scene {
       root = welcomeSceneLayout
     }
-    val control = welcomeSceneLoader.getController[WelcomeController#Controller]
+  }
+
+  def showRule(): Unit = {
+    val ruleSceneResource = getClass.getResource("RuleScene.fxml")
+    val ruleSceneLoader = new FXMLLoader(ruleSceneResource, NoDependencyResolver)
+    ruleSceneLoader.load()
+    val ruleSceneLayout: AnchorPane = ruleSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = ruleSceneLayout
+    }
+    val control = ruleSceneLoader.getController[RuleSceneController#Controller]
+    control.difficultyDescription(difficulty)
+//    control.enterButton()
 
   }
 
