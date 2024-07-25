@@ -22,14 +22,13 @@ class GameSceneController(
   private val totalTime = 120
   private var score = 0
   private val initialZombieNum = 10
-  private var spawnZombieNum = 3
-  private var spawnZombieTime = 5
-  private var maxZombies = 100
+  private var spawnZombieNum = 0
+  private var spawnZombieTime = 0
+  private var maxZombies = 0
   private var currentZombieCount = 0
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
-//    difficultySettings()
     startTimer()
     createZombies(initialZombieNum)
     updateZombieLabel()
@@ -42,6 +41,11 @@ class GameSceneController(
 
   private def difficultySettings(): Unit = {
     difficulty match {
+      case "Easy" =>
+        spawnZombieNum = 3
+        spawnZombieTime = 5
+        maxZombies = 50
+
       case "Normal" =>
         spawnZombieNum = 5
         spawnZombieTime = 10
@@ -51,7 +55,6 @@ class GameSceneController(
         spawnZombieNum = 15
         maxZombies = 200
     }
-
   }
 
   private def createZombies(zombieNum: Int): Unit = {
@@ -61,7 +64,9 @@ class GameSceneController(
       // Adjust zombie counts based on difficulty
       val (normalZombieCount, speedZombieCount): (Int, Int) = {
         difficulty match {
-          case "Easy" => (math.min(zombieNum, zombiesLeft), 0)
+          case "Easy" =>
+            val normalZombies = (math.min(zombieNum, zombiesLeft))
+            (normalZombies, 0)
           case "Normal" =>
             val maxNormalZombies = zombiesLeft / 2
             val maxSpeedZombies = zombiesLeft
