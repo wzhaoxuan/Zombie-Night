@@ -98,7 +98,7 @@ class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetI
   override def zombieWidth = 300
   override def zombieHeight = 300
   override def speed = 4
-  override def requiredClicks = 2
+  override def requiredClicks = 3
   override def attackDamage = 1
   override def layoutY = 350
 }
@@ -109,8 +109,8 @@ class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetIm
   override def imagePath = "/Images/Zombie/SpeedZombie.gif"
   override def zombieWidth = 250
   override def zombieHeight = 200
-  override def speed = 10
-  override def requiredClicks = 1
+  override def speed = 8
+  override def requiredClicks = 2
   override def attackDamage = 1
   override def layoutY = 450
 }
