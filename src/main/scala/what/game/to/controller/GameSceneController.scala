@@ -24,7 +24,7 @@ class GameSceneController(
   private val initialZombieNum = 10
   private val spawnZombieNum = 3
   private val spawnZombieTime = 5
-  private val maxZombies = 1000
+  private val maxZombies = 100
   private var currentZombieCount = 0
 
   def initialize(): Unit = {
@@ -43,18 +43,20 @@ class GameSceneController(
 
     if (zombiesLeft > 0) {
       // Adjust zombie counts based on difficulty
-      val (normalZombieCount, speedZombieCount) = difficulty match {
-        case "Easy" => (math.min(zombieNum, zombiesLeft), 0)
-        case "Normal" =>
-          val maxNormalZombies = zombiesLeft / 2
-          val maxSpeedZombies = zombiesLeft
-          // return the number of zombie
-          (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
-        case "Hard" =>
-          val maxNormalZombies = zombiesLeft / 3
-          val maxSpeedZombies = zombiesLeft
-          // return the number of zombie
-          (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
+      val (normalZombieCount, speedZombieCount): (Int, Int) = {
+        difficulty match {
+          case "Easy" => (math.min(zombieNum, zombiesLeft), 0)
+          case "Normal" =>
+            val maxNormalZombies = zombiesLeft / 2
+            val maxSpeedZombies = zombiesLeft
+            // return the number of zombie
+            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
+          case "Hard" =>
+            val maxNormalZombies = zombiesLeft / 3
+            val maxSpeedZombies = zombiesLeft
+            // return the number of zombie
+            (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies))
+        }
       }
 
       val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint)
