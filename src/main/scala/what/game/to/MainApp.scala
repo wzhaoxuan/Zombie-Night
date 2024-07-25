@@ -6,11 +6,13 @@ import scalafx.scene.Scene
 import scalafx.scene.layout.BorderPane
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{GameSceneController, WelcomeController}
+import what.game.to.controller.{GameSceneController, ModeSceneController, WelcomeController}
 import scalafx.Includes._
 import scalafx.stage.{Modality, Stage, StageStyle}
 
 object MainApp extends JFXApp {
+  // Variable to store difficulty level
+  private var difficulty: String = "Easy"
 
   // Load RootLayout.fxml
   val rootResource = getClass.getResource("WelcomeScene.fxml")
@@ -29,9 +31,6 @@ object MainApp extends JFXApp {
 
   def showGameScene(): Unit = {
     val gameSceneResource = getClass.getResource("/what/game/to/GameScene.fxml")
-    if (gameSceneResource == null) {
-      throw new RuntimeException("GameScene.fxml not found.")
-    }
     val gameSceneLoader = new FXMLLoader(gameSceneResource, NoDependencyResolver)
     gameSceneLoader.load()
     val gameSceneLayout: AnchorPane = gameSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
@@ -39,17 +38,27 @@ object MainApp extends JFXApp {
       root = gameSceneLayout
     }
     val control = gameSceneLoader.getController[GameSceneController#Controller]
+    control.setDifficulty(difficulty)
     control.initialize()
   }
 
-  // Show the welcome scene on start
-  showWelcome()
+  def showModeScene(): Unit = {
+    val modeSceneResource = getClass.getResource("/what/game/to/ModeScene.fxml")
+    if (modeSceneResource == null) {
+      println("ModeScene.fxml not found!")
+      return
+    }
+    val modeSceneLoader = new FXMLLoader(modeSceneResource, NoDependencyResolver)
+    modeSceneLoader.load()
+    val modeSceneLayout: AnchorPane = modeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = modeSceneLayout
+    }
+    val control = modeSceneLoader.getController[ModeSceneController#Controller]
+  }
 
   def showWelcome(): Unit = {
     val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
-    if (welcomeSceneResource == null) {
-      throw new RuntimeException("WelcomeScene.fxml not found.")
-    }
     val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
     welcomeSceneLoader.load()
     val welcomeSceneLayout: AnchorPane = welcomeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
@@ -57,6 +66,11 @@ object MainApp extends JFXApp {
       root = welcomeSceneLayout
     }
     val control = welcomeSceneLoader.getController[WelcomeController#Controller]
+
+  }
+
+  def setDifficulty(diff: String): Unit = {
+    difficulty = diff
   }
 
   // Entry point

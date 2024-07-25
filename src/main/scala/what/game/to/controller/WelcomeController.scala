@@ -7,7 +7,7 @@ import what.game.to.MainApp
 class WelcomeController{
 
   def getStart(): Unit = {
-    MainApp.showGameScene()
+    MainApp.showModeScene()
   }
 
 }
