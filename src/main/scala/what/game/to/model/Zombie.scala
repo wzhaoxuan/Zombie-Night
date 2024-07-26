@@ -10,6 +10,7 @@ import scala.util.Random
 import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
 import what.game.to.controller.GameSceneController
+import scalafx.scene.media.{Media, MediaPlayer}
 
 import scala.collection.mutable.ListBuffer
 
@@ -30,6 +31,10 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
   def requiredClicks: Int
   def attackDamage: Int
   def layoutY: Int
+
+  private val soundPath = getClass.getResource("/SoundEffect/shotgun.mp3").toExternalForm
+  private val clickSound = new Media(soundPath)
+  private val clickPlayer = new MediaPlayer(clickSound)
 
   private var zombieTimeline: ListBuffer[Timeline] = ListBuffer()
 
@@ -58,7 +63,8 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
       var remainingClicks = requiredClicks
       // Event Handler to count Zombie Click
       zombie.onMouseClicked = (e: MouseEvent) => {
-
+        clickPlayer.stop()
+        clickPlayer.play()
         remainingClicks -= 1
         if (remainingClicks <= 0) {
           gameArea.children.remove(zombie)
