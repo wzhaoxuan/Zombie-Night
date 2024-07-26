@@ -21,7 +21,7 @@ trait ZombieInfo{
   def zombieDamage: Int
 }
 
-abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetImage: ImageView,
+abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, victim: Person,
                       healthPoint: ProgressBar, checkGameOver: () => Unit, var gameRunning:Boolean) {
   def imagePath: String
   def zombieWidth: Int
@@ -42,7 +42,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
     println(gameArea.width.value)
 
     // Define the stopping position using the ImageView's layout values
-    val stopWidth = gameArea.width.value - targetImage.layoutX.value // X position of the ImageView
+
 
     for (_ <- 0 until zombieCount) {
       println(zombieCount)
@@ -81,11 +81,11 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
             if (gameRunning) {
               if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
                 val zombieMovement = zombie.layoutX.value + speed
-                if ((zombieMovement + zombie.fitWidth.toInt) <= stopWidth) {
+                if ((zombieMovement + zombie.fitWidth.toInt) <= (gameArea.width.value - victim.getImageView.fitWidth.value + 50)) {
                   zombie.layoutX.value += speed // move at the defined speed
                 }
-                println(zombie.layoutX.value + zombieWidth + ">=" + (gameArea.width.value - targetImage.fitWidth.value))
-                if (zombie.layoutX.value + zombieWidth >= (gameArea.width.value - targetImage.fitWidth.value)) {
+                println(zombie.layoutX.value + zombieWidth + ">=" + victim.getImageView.layoutX.value)
+                if (zombie.layoutX.value + zombieWidth >= victim.getImageView.layoutX.value) {
                   if (remainingClicks > 0) {
                     reduceHealth()
                     print("Reduce Health")
@@ -139,9 +139,9 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 
 
 // Normal Zombie
-class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView,
+class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _victim: Person,
                    _healthPoint: ProgressBar, _checkGameOver: () => Unit, _gameRunning:Boolean)
-  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint,_checkGameOver, _gameRunning){
+  extends Zombie(_gameArea, _onZombieClicked, _victim, _healthPoint,_checkGameOver, _gameRunning){
   override def imagePath: String = NormalZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 300
@@ -160,9 +160,9 @@ object NormalZombie extends ZombieInfo {
 }
 
 // Speed Zombie
-class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView,
+class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _victim: Person,
                   _healthPoint: ProgressBar, _checkGameOver: () => Unit, _gameRunning:Boolean)
-  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint,_checkGameOver, _gameRunning){
+  extends Zombie(_gameArea, _onZombieClicked, _victim, _healthPoint,_checkGameOver, _gameRunning){
   override def imagePath: String = SpeedZombie.imagePath
   override def zombieWidth = 250
   override def zombieHeight = 200
@@ -180,9 +180,9 @@ object SpeedZombie extends ZombieInfo {
   val zombieDamage = 1
 }
 
-class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView,
+class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _victim: Person,
                     _healthPoint: ProgressBar, _checkGameOver: () => Unit, _gameRunning:Boolean)
-  extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint,_checkGameOver, _gameRunning){
+  extends Zombie(_gameArea, _onZombieClicked, _victim, _healthPoint,_checkGameOver, _gameRunning){
   override def imagePath: String = DefenseZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 400

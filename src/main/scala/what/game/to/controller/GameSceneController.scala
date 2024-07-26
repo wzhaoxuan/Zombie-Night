@@ -1,5 +1,5 @@
 package what.game.to.controller
-import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Zombie}
+import what.game.to.model.{DefenseZombie, NormalZombie, Person, SpeedZombie, Zombie}
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
@@ -16,7 +16,7 @@ class GameSceneController(
                            private val scoreLabel: Label,
                            private val gameArea: AnchorPane,
                            private val timerLabel: Label,
-                           private val targetImage: ImageView,
+//                           private val targetImage: ImageView,
                            private var healthPoint: ProgressBar,
                            private val zombieLabel: Label
                          ) {
@@ -28,11 +28,13 @@ class GameSceneController(
   private var spawnZombieTime = 0
   private var maxZombies = 0
   private var currentZombieCount = 0
+  private val victim = new Person(gameArea)
   var gameRunning = true
 
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
+    victim.setupImage("/Images/yang-gang-mini-yang.gif", 1189.0, 297.0, 255.0, 346.0)
     startTimer()
     createZombies(initialZombieNum)
     updateZombieLabel()
@@ -89,9 +91,9 @@ class GameSceneController(
         }
       }
 
-      val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
-      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
-      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
+      val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
+      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
+      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
 
       println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)

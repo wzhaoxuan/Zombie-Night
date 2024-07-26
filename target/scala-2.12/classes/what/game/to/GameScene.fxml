@@ -5,8 +5,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -71,12 +69,7 @@
             </MenuButton>
             <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ProgressBar fx:id="healthPoint" layoutX="193.0" layoutY="104.0" prefHeight="38.0" prefWidth="300.0" progress="1.0" styleClass="healthPoint" stylesheets="@style.css" />
-                  <ImageView fx:id="targetImage" fitHeight="346.0" fitWidth="255.0" layoutX="193.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Images/yang-gang-mini-yang.gif" />
-                     </image>
-                  </ImageView>
+                  <ProgressBar fx:id="healthPoint" layoutX="182.0" prefHeight="38.0" prefWidth="300.0" progress="1.0" styleClass="healthPoint" stylesheets="@style.css" />
                </children>
             </AnchorPane>
             </children>
