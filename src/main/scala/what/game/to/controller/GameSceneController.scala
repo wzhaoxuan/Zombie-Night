@@ -91,9 +91,9 @@ class GameSceneController(
         }
       }
 
-      val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
-      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
-      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, checkGameOver, gameRunning)
+      val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
+      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
+      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
 
       println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)
@@ -117,13 +117,13 @@ class GameSceneController(
     scoreLabel.text = s" Score: ${score.toString}"
     checkGameOver()
   }
-  private def checkGameOver(): Unit = {
+  private def checkGameOver(timeRanOut: Boolean = false): Unit = {
     if (healthPoint.progress.value <= 0) {
       gameRunning = false
       stopAllZombies()
       // Game over due to health point depletion
       MainApp.showEndGameScene(healthPoint.progress.value, score) // Pass relevant info
-    } else if (score >= maxZombies){
+    } else if (score >= maxZombies || timeRanOut){
       gameRunning = false
 //      println(gameRunning)
       // Victory condition: All zombies are killed
@@ -134,7 +134,7 @@ class GameSceneController(
 
   // Timer count down function
   private def startTimer(): Unit = {
-    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum), () =>checkGameOver())
+    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum), () =>checkGameOver(true))
     time.start()
   }
 
