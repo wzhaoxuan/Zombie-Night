@@ -31,6 +31,10 @@ class GameSceneController(
   private val victim = new Person(gameArea)
   var gameRunning = true
 
+  private val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
+  private val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
+  private val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
+
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -91,10 +95,6 @@ class GameSceneController(
         }
       }
 
-      val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
-      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
-      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, () =>checkGameOver(), gameRunning)
-
       println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)
       println("SpeedZombie")
@@ -139,8 +139,10 @@ class GameSceneController(
   }
 
   private def stopAllZombies(): Unit = {
-    // Ensure all zombies stop when the game ends
-    gameArea.children.clear() // Clear any remaining UI elements
+    normalZombie.stopAllZombies()
+    speedZombie.stopAllZombies()
+    defenseZombie.stopAllZombies()
+    gameArea.children.clear()
   }
 
 

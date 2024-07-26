@@ -41,8 +41,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, victim:
     println("Creating zombies")
     println(gameArea.width.value)
 
-    // Define the stopping position using the ImageView's layout values
-
+    if(!gameRunning) return
 
     for (_ <- 0 until zombieCount) {
       println(zombieCount)
@@ -77,7 +76,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, victim:
         cycleCount = Timeline.Indefinite // infinite number of cycles
         keyFrames = Seq({
           KeyFrame(Duration(30), onFinished = _ => {
-            println("Timle")
+            println("Timeline running")
             if (gameRunning) {
               if (zombie.layoutX.value + zombieWidth < gameArea.width.value) {
                 val zombieMovement = zombie.layoutX.value + speed
@@ -91,12 +90,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, victim:
                     print("Reduce Health")
                   }
                 }
-              } else {
-                println("Zombie reached the stopping point. Calling stopZombie.")
-                stopZombie(zombie)
               }
-            } else {
-              stopZombie(zombie) // Ensure the zombie stops if the game is not running
             }
           })
         })
@@ -107,26 +101,17 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, victim:
   }
 
   private def reduceHealth(): Unit = {
+    println(gameRunning)
     if(gameRunning){
       val newHealth = healthPoint.progress - attackDamage * 0.0005 // Adjust the decrement factor as needed
-      var count = 0
       newHealth.onChange((_, _, newvalue) => {
         println(s"Health: ${newvalue}" )
       })
-      count+=1
-      println(count)
       healthPoint.progress = math.max(newHealth.toDouble, 0)
       if (healthPoint.progress.value <= 0) {
         checkGameOver()
       }
     }
-  }
-
-  def stopZombie(zombie: ImageView): Unit = {
-    println(zombieTimeline)
-    zombieTimeline.foreach(_.stop())
-    gameArea.children.remove(zombie) // Remove the zombie from the game area
-
   }
 
   def stopAllZombies(): Unit = {
