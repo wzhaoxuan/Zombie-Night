@@ -6,7 +6,7 @@ import scalafx.scene.Scene
 import scalafx.scene.layout.BorderPane
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{GameSceneController, ModeSceneController, RuleSceneController, WelcomeController}
+import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, RuleSceneController}
 import scalafx.Includes._
 import scalafx.stage.{Modality, Stage, StageStyle}
 
@@ -57,16 +57,6 @@ object MainApp extends JFXApp {
     val control = modeSceneLoader.getController[ModeSceneController#Controller]
   }
 
-  def showWelcome(): Unit = {
-    val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
-    val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
-    welcomeSceneLoader.load()
-    val welcomeSceneLayout: AnchorPane = welcomeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
-    stage.scene = new Scene {
-      root = welcomeSceneLayout
-    }
-  }
-
   def showRule(): Unit = {
     val ruleSceneResource = getClass.getResource("RuleScene.fxml")
     val ruleSceneLoader = new FXMLLoader(ruleSceneResource, NoDependencyResolver)
@@ -77,9 +67,41 @@ object MainApp extends JFXApp {
     }
     val control = ruleSceneLoader.getController[RuleSceneController#Controller]
     control.difficultyDescription(difficulty)
-//    control.enterButton()
 
   }
+
+  def showEndGameScene(healthProgress: Double, zombiesKilled: Int): Unit = {
+    val victorySceneResource = getClass.getResource("EndGameScene.fxml")
+    val victorySceneLoader = new FXMLLoader(victorySceneResource, NoDependencyResolver)
+    victorySceneLoader.load()
+    val victorySceneLayout: AnchorPane = victorySceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = victorySceneLayout
+    }
+    val control = victorySceneLoader.getController[EndGameController#Controller]
+    if(healthProgress <= 0){
+      control.gameOver(healthProgress, zombiesKilled)
+    }
+    else{
+      control.showVictory(healthProgress, zombiesKilled)
+    }
+
+
+    //    control.enterButton()
+
+  }
+
+  def showWelcome(): Unit = {
+    val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
+    val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
+    welcomeSceneLoader.load()
+    val welcomeSceneLayout: AnchorPane = welcomeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = welcomeSceneLayout
+    }
+  }
+
+
 
   def setDifficulty(diff: String): Unit = {
     difficulty = diff

@@ -1,10 +1,10 @@
 package what.game.to.model
-
+import what.game.to.controller.GameSceneController
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.scene.control.Label
 import scalafx.util.Duration
 
-class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombies: () => Unit) {
+class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombies: () => Unit, checkGameOver: () => Unit) {
   private var remainingTime = totalTime
   private var gameRunning = true // Flag to check if the game is running
   private var timeLine: Timeline = _
@@ -40,8 +40,9 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombi
       spawnTimeLine.play()
     }
 
-      private def timeUp(): Unit = {
+    private def timeUp(): Unit = {
         gameRunning = false
+        checkGameOver()
         timeLine.stop()
         spawnTimeLine.stop()
 

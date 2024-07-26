@@ -1,11 +1,12 @@
 package what.game.to.controller
-import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer, Zombie}
+import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer}
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 import scalafx.scene.image.ImageView
 import scalafx.Includes._
+import what.game.to.MainApp.showEndGameScene
 
 import scala.util.Random
 
@@ -26,6 +27,7 @@ class GameSceneController(
   private var spawnZombieTime = 0
   private var maxZombies = 0
   private var currentZombieCount = 0
+  private var gameRunning = true
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -60,6 +62,8 @@ class GameSceneController(
   }
 
   private def createZombies(zombieNum: Int): Unit = {
+    if(!gameRunning) return
+
     val zombiesLeft = maxZombies - currentZombieCount
 
     if (zombiesLeft > 0) {
@@ -83,9 +87,9 @@ class GameSceneController(
         }
       }
 
-      val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint)
-      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint)
-      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint)
+      val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
+      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
+      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
 
       println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)
@@ -107,13 +111,27 @@ class GameSceneController(
     // Update score
     score += 1
     scoreLabel.text = score.toString
+    checkGameOver()
+  }
+  private def checkGameOver(): Unit = {
+    if (healthPoint.progress.value <= 0) {
+      gameRunning = false
+      // Game over due to health point depletion
+      MainApp.showEndGameScene(healthPoint.progress.value, score) // Pass relevant info
+    } else if (score >= maxZombies){
+      gameRunning = false
+      // Victory condition: All zombies are killed
+      MainApp.showEndGameScene(healthPoint.progress.value, score)
+    }
   }
 
   // Timer count down function
   private def startTimer(): Unit = {
-    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum))
+    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum), () =>checkGameOver())
     time.start()
   }
+
+
 
   def exit(): Unit = {
     System.exit(0)
