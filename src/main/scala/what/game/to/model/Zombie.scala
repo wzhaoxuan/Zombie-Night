@@ -94,7 +94,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 // Normal Zombie
 class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = NormalZombie.imagePath
+  override def imagePath: String = NormalZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 300
   override def speed: Int = NormalZombie.zombieSpeed
@@ -133,7 +133,7 @@ object SpeedZombie{
 
 class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = DefenseZombie.imagePath
+  override def imagePath: String = DefenseZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 400
   override def speed: Int = DefenseZombie.zombieSpeed

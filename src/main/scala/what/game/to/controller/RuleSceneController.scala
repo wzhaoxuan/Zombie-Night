@@ -11,6 +11,7 @@ import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie}
 class RuleSceneController(
                          private val description: Label,
                          private val startButton: Button,
+                         private val backButton: Button,
                          private val normalZombieImage: ImageView,
                          private val speedZombieImage: ImageView,
                          private val defenseZombieImage: ImageView,
@@ -71,6 +72,8 @@ class RuleSceneController(
     }
 
     description.text = descriptionText
+    startButton.text = "Start"
+    backButton.text = "Back"
   }
 
 
@@ -79,5 +82,7 @@ class RuleSceneController(
     MainApp.showGameScene()
   }
 
-
+  def handelBackButton(): Unit = {
+    MainApp.showModeScene()
+  }
 }
