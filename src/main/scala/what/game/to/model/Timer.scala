@@ -40,9 +40,8 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombi
       spawnTimeLine.play()
     }
 
-      private def timeUp() = {
+      private def timeUp(): Unit = {
         gameRunning = false
-        // Optional: You can stop the timelines here if needed
         timeLine.stop()
         spawnTimeLine.stop()
 

@@ -64,7 +64,7 @@
     -fx-wrap-text: true;
 }
 
-.rule{
+.rule-text{
     -fx-font-size: 65;
     /*-fx-max-width: fit-content;*/
 }
@@ -81,4 +81,8 @@
     -fx-font-size: 22;
     -fx-font-family: "Bookman Old Style";
     -fx-text-fill: black;
+}
+
+.rule-backButton{
+    /*-fx-text: "Back";*/
 }

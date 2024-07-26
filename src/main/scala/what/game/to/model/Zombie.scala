@@ -11,6 +11,13 @@ import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.geometry.Bounds
 
+trait ZombieInfo{
+  def imagePath: String
+  def zombieName: String
+  def zombieSpeed: Int
+  def zombieRequiredClicks: Int
+  def zombieDamage: Int
+}
 
 abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetImage: ImageView, healthPoint: ProgressBar) {
   def imagePath: String
@@ -103,9 +110,9 @@ class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetI
   override def layoutY = 360
 }
 
-object NormalZombie{
+object NormalZombie extends ZombieInfo {
   val imagePath = "/Images/Zombie/NormalZombie.gif"
-  val zombieName = "NormalZombie"
+  val zombieName = "Normal Zombie"
   val zombieSpeed = 4
   val zombieRequiredClicks = 3
   val zombieDamage = 2
@@ -123,9 +130,9 @@ class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetIm
   override def layoutY = 450
 }
 
-object SpeedZombie{
+object SpeedZombie extends ZombieInfo {
   val imagePath = "/Images/Zombie/SpeedZombie.gif"
-  val zombieName = "NormalZombie"
+  val zombieName = "Speed Zombie"
   val zombieSpeed = 8
   val zombieRequiredClicks =2
   val zombieDamage = 1
@@ -142,9 +149,9 @@ class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _target
   override def layoutY = 280
 }
 
-object DefenseZombie{
+object DefenseZombie extends ZombieInfo {
   val imagePath = "/Images/Zombie/DefenseZombie.gif"
-  val zombieName = "Normal Zombie"
+  val zombieName = "Defense Zombie"
   val zombieSpeed = 2
   val zombieRequiredClicks = 5
   val zombieDamage = 3
