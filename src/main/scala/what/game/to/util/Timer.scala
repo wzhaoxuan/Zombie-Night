@@ -1,5 +1,5 @@
-package what.game.to.model
-import what.game.to.controller.GameSceneController
+package what.game.to.util
+
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.scene.control.Label
 import scalafx.util.Duration

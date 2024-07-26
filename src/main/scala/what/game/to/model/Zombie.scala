@@ -9,7 +9,6 @@ import scalafx.util.Duration
 import scala.util.Random
 import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
-import what.game.to.controller.GameSceneController
 import scalafx.scene.media.{Media, MediaPlayer}
 
 import scala.collection.mutable.ListBuffer
@@ -85,6 +84,7 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
                 if ((zombieMovement + zombie.fitWidth.toInt) <= stopWidth) {
                   zombie.layoutX.value += speed // move at the defined speed
                 }
+                println(zombie.layoutX.value + zombieWidth + ">=" + (gameArea.width.value - targetImage.fitWidth.value))
                 if (zombie.layoutX.value + zombieWidth >= (gameArea.width.value - targetImage.fitWidth.value)) {
                   if (remainingClicks > 0) {
                     reduceHealth()

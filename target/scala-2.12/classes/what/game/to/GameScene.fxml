@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="gameArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.GameSceneController">
     <children>
-        <GridPane prefHeight="800.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane prefHeight="800.0" prefWidth="1500.0" styleClass="zombie-label" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,12 +31,12 @@
             <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="79.0" prefWidth="169.0" text="Time: ">
+                  <Label alignment="TOP_CENTER" prefHeight="91.0" prefWidth="184.0" styleClass="time-label" stylesheets="@style.css" text="Time: ">
                      <font>
                         <Font name="System Bold" size="49.0" />
                      </font>
                   </Label>
-                      <Label fx:id="timerLabel" alignment="TOP_CENTER" prefHeight="71.0" prefWidth="92.0" text="120">
+                      <Label fx:id="timerLabel" alignment="TOP_CENTER" prefHeight="91.0" prefWidth="129.0" styleClass="time-label" stylesheets="@style.css" text="120">
                           <font>
                               <Font name="System Bold" size="49.0" />
                           </font>
@@ -47,26 +47,19 @@
                <children>
                       <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="500.0">
                           <children>
-                              <Label contentDisplay="BOTTOM" prefHeight="20.0" prefWidth="49.0" text="Score:">
-                                  <font>
-                                      <Font name="System Bold" size="15.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="21.0" prefWidth="28.0" text="0" />
+                              <Label fx:id="scoreLabel" layoutX="1000.0" layoutY="1000.0" prefHeight="24.0" prefWidth="182.0" styleClass="score-label" stylesheets="@style.css" text="Score" />
                           </children>
                           <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                           </padding>
                       </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0">
-                            <children>
-                                <Label text=" Zombie:  ">
-                                    <font>
-                                        <Font name="System Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="zombieLabel" text="0" />
-                            </children>
+                     <children>
+                        <Label fx:id="zombieLabel" prefHeight="24.0" prefWidth="205.0" styleClass="zombie-label" stylesheets="@style.css" text="Zombie" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                         </HBox>
                </children>
             </VBox>
@@ -76,34 +69,12 @@
                 <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
             </MenuButton>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="114.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <AnchorPane prefHeight="266.0" prefWidth="17.0">
-                     <children>
-                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="1.0" layoutY="187.0" text="Power: " textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="34.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <ImageView fitHeight="100.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Images/Power/Bomb.gif" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="100.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Images/Power/Bomb.gif" />
-                     </image></ImageView>
-               </children>
-            </HBox>
             <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ProgressBar fx:id="healthPoint" layoutX="193.0" layoutY="104.0" prefHeight="38.0" prefWidth="310.0" progress="1.0" styleClass="healthPoint" stylesheets="@style.css" />
-                  <ImageView fx:id="targetImage" fitHeight="373.0" fitWidth="299.0" layoutX="200.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+                  <ProgressBar fx:id="healthPoint" layoutX="193.0" layoutY="104.0" prefHeight="38.0" prefWidth="300.0" progress="1.0" styleClass="healthPoint" stylesheets="@style.css" />
+                  <ImageView fx:id="targetImage" fitHeight="346.0" fitWidth="255.0" layoutX="193.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../OneDrive/Pictures/Saved%20Pictures/Septh%20Curry.jpg" />
+                        <Image url="@../../../Images/yang-gang-mini-yang.gif" />
                      </image>
                   </ImageView>
                </children>

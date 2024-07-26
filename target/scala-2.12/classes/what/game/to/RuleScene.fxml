@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.RuleSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="rule" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.RuleSceneController">
    <children>
-      <Label layoutX="669.0" layoutY="14.0" prefHeight="103.0" prefWidth="162.0" styleClass="rule-text" stylesheets="@style.css" text="Rule" />
+      <Label layoutX="669.0" layoutY="14.0" prefHeight="129.0" prefWidth="230.0" styleClass="rule-text" stylesheets="@style.css" text="Rule" />
       <Label fx:id="description" layoutX="74.0" layoutY="141.0" maxWidth="850.0" styleClass="description" stylesheets="@style.css" text="Label" wrapText="true" />
-      <Button fx:id="startButton" layoutX="1316.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleStartButton" prefHeight="65.0" prefWidth="128.0" stylesheets="@style.css" text="Button" />
-      <VBox layoutX="74.0" layoutY="284.0" prefHeight="507.0" prefWidth="383.0">
+      <Button fx:id="startButton" layoutX="1286.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleStartButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-StartButton" stylesheets="@style.css" text="Button" />
+      <VBox layoutX="74.0" layoutY="284.0" prefHeight="507.0" prefWidth="383.0" styleClass="rule-vbox" stylesheets="@style.css">
          <children>
-            <Label contentDisplay="CENTER" prefHeight="57.0" prefWidth="213.0" styleClass="rule-zombie" stylesheets="@style.css" text="Zombie" />
+            <Label contentDisplay="CENTER" prefHeight="58.0" prefWidth="388.0" styleClass="rule-zombie" stylesheets="@style.css" text="Zombie" />
             <VBox prefHeight="450.0" prefWidth="459.0">
                <children>
                   <HBox prefHeight="150.0" prefWidth="454.0">
@@ -64,6 +64,6 @@
             </VBox>
          </children>
       </VBox>
-      <Button fx:id="backButton" layoutX="1161.0" layoutY="707.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-backButton" stylesheets="@style.css" text="Button" />
+      <Button fx:id="backButton" layoutX="1060.0" layoutY="707.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-backButton" stylesheets="@style.css" text="Button" />
    </children>
 </AnchorPane>

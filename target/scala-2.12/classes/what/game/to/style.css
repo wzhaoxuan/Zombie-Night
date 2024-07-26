@@ -6,17 +6,16 @@
 /*    -fx-alignment: center;*/
 /*}*/
 
-.background{
+.background, .rule{
     -fx-background-image: url("/Images/Backgroud/cartoon.jpg");
 }
 
-.welcome-title{
-    -fx-text-fill: black;
+.welcome-title, .mode-text{
+    -fx-text-fill: #ababab;
     -fx-font-family: "Footlight MT Light";
-    -fx-font-size: 110;
-    /*-fx-max-width: fit-content;*/
-}
+    -fx-font-size: 120;
 
+}
 
 .button{
     -fx-background-image: url("/Images/Power/Bomb.gif");
@@ -37,84 +36,110 @@
     -fx-cursor: pointer;
 }
 
-.easyButton, .normalButton, .hardButton {
-
-    -fx-font-family: "Franklin Gothic Heavy";
-    -fx-text-fill: white;
-    -fx-border-radius: 10 10 10 10;
+.mode-text{
+    -fx-font-size: 100;
 }
 
-.easyButton{
+.easyButton, .normalButton, .hardButton, .rule-backButton, .rule-StartButton,.playAgain,.exit{
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-text-fill: white;
+    -fx-font-size: 25;
+    -fx-border-radius: 10 10 10 10;
+    -fx-pref-width: 200;
+    -fx-pref-height: 80;
+}
+
+.easyButton,.rule-StartButton,.playAgain{
     -fx-background-color: #009999;
-    -fx-pref-width: 150;
+
+}
+
+.easyButton:hover, .rule-StartButton:hover, playAgain:hover{
+    -fx-background-color: #19b6b6;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .normalButton{
     -fx-background-color: Grey;
-    -fx-font-family: "Franklin Gothic Heavy";
-    -fx-text-fill: white;
-    -fx-pref-width: 150;
 }
 
-.hardButton{
+.normalButton:hover{
+    -fx-background-color: #a0a0a0;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.hardButton, .rule-backButton, .exit{
     -fx-background-color: #990000;
-    -fx-font-family: "Franklin Gothic Heavy";
-    -fx-text-fill: white;
-    -fx-pref-width: 150;
+}
+
+.hardButton:hover, .rule-backButton:hover, .exit:hover{
+    -fx-background-color: #bd0101;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .healthPoint{
-    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
 }
 
 .description{
     -fx-text-alignment: justify;
     -fx-max-width: 1350;
-    -fx-font-size: 20;
+    -fx-font-size: 24;
     -fx-font-family: "Bookman Old Style";
-    -fx-text-fill: black;
+    -fx-text-fill: #ababab;
     -fx-wrap-text: true;
 }
 
-
 .rule-text{
-    -fx-font-size: 65;
-    -fx-font-family: "Bookman Old Style";
+    -fx-font-size: 110;
+    -fx-font-family: "Footlight MT Light";
+    -fx-text-fill: #ababab;
 }
 
 .rule-zombie{
     -fx-font-size: 30;
     -fx-font-family: "Bookman Old Style";
-    -fx-text-fill: black;
+    -fx-text-fill: #ababab;
     -fx-alignment: center;
     -fx-padding: 10 10 10 10;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: transparent transparent #ababab transparent;
 }
 
 .rule-normalZombie, .rule-speedZombie, .rule-defenseZombie{
     -fx-font-size: 22;
     -fx-font-family: "Bookman Old Style";
-    -fx-text-fill: black;
-}
-
-.rule-backButton{
-    /*-fx-text: "Back";*/
+    -fx-text-fill: #ababab;
 }
 
 .status{
-    -fx-font-family: "Arial Rounded MT Bold";
-    -fx-font-size: 90;
-    -fx-text-fill: black;
+    -fx-font-family: "Footlight MT Light";
+    -fx-font-size: 120;
+    -fx-text-fill: #ababab;
 }
 
 .healthStatus, .zombieKilled{
-    -fx-font-family: "Arial Rounded MT Bold";
-    -fx-text-fill: black;
-    -fx-font-size: 30;
+    -fx-font-family: "Footlight MT Light";
+    -fx-text-fill: #ababab;
+    -fx-font-size: 45;
+    -fx-padding: 0 0 0 20;
 }
 
-.playAgain, .exit{
-    -fx-font-family: "Arial Rounded MT Bold";
-    -fx-text-fill: black;
-    -fx-font-size: 20;
-    -fx-pref-width: 150;
+
+.score-label, .zombie-label{
+    -fx-font-family: "Footlight MT Light";
+    -fx-text-fill: #ababab;
+    -fx-font-size: 22;
+    -fx-padding: 5 5 5 5;
+}
+
+.time-label{
+    -fx-font-family: "Footlight MT Light";
+    -fx-text-fill: #ababab;
+    -fx-font-size: 65;
+    -fx-padding: 10 10 10 10;
 }

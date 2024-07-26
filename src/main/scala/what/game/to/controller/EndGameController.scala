@@ -27,7 +27,7 @@ class EndGameController(
 
   def gameOver(healthProgress: Double, zombiesKilled: Int): Unit = {
     val healthPercentage = (healthProgress * 100).toInt
-    statusLabel.text = "Game Over"
+    statusLabel.text = "Death"
     healthStatus.text = s"Health Remaining: $healthPercentage%"
     zombieKilled.text = s"Zombies Killed: $zombiesKilled"
 

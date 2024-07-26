@@ -1,5 +1,5 @@
 package what.game.to.controller
-import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer, Zombie}
+import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Zombie}
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
@@ -7,6 +7,7 @@ import scalafxml.core.macros.sfxml
 import scalafx.scene.image.ImageView
 import scalafx.Includes._
 import what.game.to.MainApp.showEndGameScene
+import what.game.to.util.Timer
 
 import scala.util.Random
 
@@ -105,13 +106,13 @@ class GameSceneController(
     }
 
   private def updateZombieLabel(): Unit = {
-    zombieLabel.text = s"$currentZombieCount/$maxZombies"
+    zombieLabel.text = s"Zombie: $currentZombieCount/$maxZombies"
   }
 
   private def handleZombieClick(): Unit = {
     // Update score
     score += 1
-    scoreLabel.text = score.toString
+    scoreLabel.text = s" Score: ${score.toString}"
     checkGameOver()
   }
   private def checkGameOver(): Unit = {
