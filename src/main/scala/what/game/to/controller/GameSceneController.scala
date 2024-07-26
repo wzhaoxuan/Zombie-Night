@@ -117,7 +117,6 @@ class GameSceneController(
   private def checkGameOver(): Unit = {
     if (healthPoint.progress.value <= 0) {
       gameRunning = false
-      println(gameRunning)
       stopAllZombies()
       // Game over due to health point depletion
       MainApp.showEndGameScene(healthPoint.progress.value, score) // Pass relevant info
