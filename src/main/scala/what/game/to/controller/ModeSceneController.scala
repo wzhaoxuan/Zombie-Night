@@ -12,10 +12,6 @@ class ModeSceneController(
                            private val hardMode: Button
                          ) {
 
-  // Initialize button actions using ScalaFX's onAction with lambda
-  easyMode.onAction = (e: ActionEvent) => handleEasyButton()
-  normalMode.onAction = (e: ActionEvent) => handleNormalButton()
-  hardMode.onAction = (e: ActionEvent) => handleHardButton()
 
   // Handle button actions
   def handleEasyButton(): Unit = {

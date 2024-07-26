@@ -94,34 +94,58 @@ abstract class Zombie(gameArea: AnchorPane, onZombieClicked: () => Unit, targetI
 // Normal Zombie
 class NormalZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = "/Images/Zombie/NormalZombie.gif"
+  override def imagePath = NormalZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 300
-  override def speed = 4
-  override def requiredClicks = 3
-  override def attackDamage = 2
+  override def speed: Int = NormalZombie.zombieSpeed
+  override def requiredClicks: Int = NormalZombie.zombieRequiredClicks
+  override def attackDamage: Int = NormalZombie.zombieDamage
   override def layoutY = 360
+}
+
+object NormalZombie{
+  val imagePath = "/Images/Zombie/NormalZombie.gif"
+  val zombieName = "NormalZombie"
+  val zombieSpeed = 4
+  val zombieRequiredClicks = 3
+  val zombieDamage = 2
 }
 
 // Speed Zombie
 class SpeedZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = "/Images/Zombie/SpeedZombie.gif"
+  override def imagePath: String = SpeedZombie.imagePath
   override def zombieWidth = 250
   override def zombieHeight = 200
-  override def speed = 8
-  override def requiredClicks = 2
-  override def attackDamage = 1
+  override def speed: Int = SpeedZombie.zombieSpeed
+  override def requiredClicks: Int = SpeedZombie.zombieRequiredClicks
+  override def attackDamage: Int = SpeedZombie.zombieDamage
   override def layoutY = 450
+}
+
+object SpeedZombie{
+  val imagePath = "/Images/Zombie/SpeedZombie.gif"
+  val zombieName = "NormalZombie"
+  val zombieSpeed = 8
+  val zombieRequiredClicks =2
+  val zombieDamage = 1
 }
 
 class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _targetImage: ImageView, _healthPoint: ProgressBar)
   extends Zombie(_gameArea, _onZombieClicked, _targetImage, _healthPoint){
-  override def imagePath = "/Images/Zombie/DefenseZombie.gif"
+  override def imagePath = DefenseZombie.imagePath
   override def zombieWidth = 300
   override def zombieHeight = 400
-  override def speed = 2
-  override def requiredClicks = 5
-  override def attackDamage = 3
+  override def speed: Int = DefenseZombie.zombieSpeed
+  override def requiredClicks: Int = DefenseZombie.zombieRequiredClicks
+  override def attackDamage: Int = DefenseZombie.zombieDamage
   override def layoutY = 280
+}
+
+object DefenseZombie{
+  val imagePath = "/Images/Zombie/DefenseZombie.gif"
+  val zombieName = "NormalZombie"
+  val zombieSpeed = 2
+  val zombieRequiredClicks = 5
+  val zombieDamage = 3
 }

@@ -68,3 +68,10 @@
     -fx-font-size: 65;
     /*-fx-max-width: fit-content;*/
 }
+
+.rule-zombie{
+    -fx-font-size: 25;
+    -fx-font-family: "Bookman Old Style";
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
