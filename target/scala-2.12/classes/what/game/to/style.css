@@ -7,23 +7,34 @@
 /*}*/
 
 .background{
-    -fx-background-image: url("/Images/Backgroud/zombie-background.jpg");
+    -fx-background-image: url("/Images/Backgroud/cartoon.jpg");
 }
 
-.label{
-    -fx-text-fill: #008080;
-    -fx-font-family: Jokerman;
+.welcome-title{
+    -fx-text-fill: black;
+    -fx-font-family: "Footlight MT Light";
+    -fx-font-size: 110;
+    /*-fx-max-width: fit-content;*/
 }
+
 
 .button{
     -fx-background-image: url("/Images/Power/Bomb.gif");
 }
 
-.welcomeButton{
-    -fx-background-color: Grey;
+.welcome-button{
+    -fx-background-color: black;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
     -fx-border-radius: 10 10 10 10;
+    -fx-pref-width: 300;
+    -fx-opacity: 60%;
+    -fx-font-size: 25;
+}
+
+.welcome-button:hover{
+    -fx-opacity: 100%;
+    -fx-cursor: pointer;
 }
 
 .easyButton, .normalButton, .hardButton {
@@ -35,20 +46,21 @@
 
 .easyButton{
     -fx-background-color: #009999;
+    -fx-pref-width: 150;
 }
 
 .normalButton{
     -fx-background-color: Grey;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
-    -fx-border-radius: 10 10 10 10;
+    -fx-pref-width: 150;
 }
 
 .hardButton{
     -fx-background-color: #990000;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
-    -fx-border-radius: 10 10 10 10;
+    -fx-pref-width: 150;
 }
 
 .healthPoint{
@@ -64,9 +76,10 @@
     -fx-wrap-text: true;
 }
 
+
 .rule-text{
     -fx-font-size: 65;
-    /*-fx-max-width: fit-content;*/
+    -fx-font-family: "Bookman Old Style";
 }
 
 .rule-zombie{
@@ -85,4 +98,23 @@
 
 .rule-backButton{
     /*-fx-text: "Back";*/
+}
+
+.status{
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-size: 90;
+    -fx-text-fill: black;
+}
+
+.healthStatus, .zombieKilled{
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-text-fill: black;
+    -fx-font-size: 30;
+}
+
+.playAgain, .exit{
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+    -fx-pref-width: 150;
 }

@@ -1,5 +1,5 @@
 package what.game.to.controller
-import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer}
+import what.game.to.model.{DefenseZombie, NormalZombie, SpeedZombie, Timer, Zombie}
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
@@ -27,7 +27,8 @@ class GameSceneController(
   private var spawnZombieTime = 0
   private var maxZombies = 0
   private var currentZombieCount = 0
-  private var gameRunning = true
+  var gameRunning = true
+
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -87,9 +88,9 @@ class GameSceneController(
         }
       }
 
-      val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
-      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
-      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver)
+      val normalZombie = new NormalZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
+      val speedZombie = new SpeedZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
+      val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, targetImage, healthPoint, checkGameOver, gameRunning)
 
       println("NormalZombie")
       normalZombie.createZombies(normalZombieCount)
@@ -116,11 +117,15 @@ class GameSceneController(
   private def checkGameOver(): Unit = {
     if (healthPoint.progress.value <= 0) {
       gameRunning = false
+      println(gameRunning)
+      stopAllZombies()
       // Game over due to health point depletion
       MainApp.showEndGameScene(healthPoint.progress.value, score) // Pass relevant info
     } else if (score >= maxZombies){
       gameRunning = false
+//      println(gameRunning)
       // Victory condition: All zombies are killed
+      stopAllZombies()
       MainApp.showEndGameScene(healthPoint.progress.value, score)
     }
   }
@@ -131,6 +136,10 @@ class GameSceneController(
     time.start()
   }
 
+  private def stopAllZombies(): Unit = {
+    // Ensure all zombies stop when the game ends
+    gameArea.children.clear() // Clear any remaining UI elements
+  }
 
 
   def exit(): Unit = {

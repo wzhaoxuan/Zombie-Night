@@ -85,10 +85,6 @@ object MainApp extends JFXApp {
     else{
       control.showVictory(healthProgress, zombiesKilled)
     }
-
-
-    //    control.enterButton()
-
   }
 
   def showWelcome(): Unit = {

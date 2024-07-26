@@ -29,7 +29,7 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombi
         cycleCount = Timeline.Indefinite
         keyFrames = Seq(
           KeyFrame(Duration(spawnZombieTime * 700), onFinished = _ => {
-            if (gameRunning) {
+            if (remainingTime > 0 ) {
               createZombies()
             }
           })

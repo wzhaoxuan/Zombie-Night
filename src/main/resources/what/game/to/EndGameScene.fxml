@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.EndGameController">
    <children>
       <GridPane layoutX="571.0" layoutY="333.0" prefHeight="800.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -30,12 +29,12 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="250.0">
                            <children>
-                              <Button alignment="CENTER" layoutX="93.0" layoutY="85.0" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="playAgain" alignment="CENTER" layoutX="74.0" layoutY="70.0" mnemonicParsing="false" onAction="#handlePlayAgain" prefHeight="71.0" prefWidth="102.0" styleClass="playAgain" stylesheets="@style.css" text="Button" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="250.0">
                            <children>
-                              <Button layoutX="93.0" layoutY="85.0" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="exit" layoutX="65.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="Button" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -46,9 +45,9 @@
                <children>
                   <VBox layoutX="177.0" layoutY="123.0" prefHeight="434.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label fx:id="statusLabel" alignment="CENTER" prefHeight="182.0" prefWidth="500.0" text="Victory" />
-                        <Label fx:id="healthStatus" alignment="CENTER" prefHeight="145.0" prefWidth="566.0" text="Label" />
-                        <Label fx:id="zombieKilled" alignment="CENTER" prefHeight="180.0" prefWidth="541.0" text="Label" />
+                        <Label fx:id="statusLabel" alignment="CENTER" prefHeight="182.0" prefWidth="500.0" styleClass="status" stylesheets="@style.css" text="Victory" />
+                        <Label fx:id="healthStatus" alignment="CENTER" prefHeight="145.0" prefWidth="566.0" styleClass="healthStatus" stylesheets="@style.css" text="Label" />
+                        <Label fx:id="zombieKilled" alignment="CENTER" prefHeight="180.0" prefWidth="541.0" styleClass="zombieKilled" stylesheets="@style.css" text="Label" />
                      </children>
                   </VBox>
                </children>

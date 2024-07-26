@@ -11,7 +11,10 @@ class EndGameController(
                          private val zombieKilled: Label,
                          private val playAgain: Button,
                          private val exit: Button
-                            ){
+                       ){
+
+  playAgain.text = "Play Again"
+  exit.text = "Exit"
 
 
   def showVictory(healthProgress: Double, zombiesKilled: Int): Unit = {
@@ -20,13 +23,6 @@ class EndGameController(
     healthStatus.text = s"Health Remaining: $healthPercentage"
     zombieKilled.text = s"Zombies Killed: $zombiesKilled"
 
-    def handlePlayAgain(): Unit = {
-      MainApp.showModeScene()
-    }
-
-    def handleExit(): Unit = {
-      System.exit(0)
-    }
   }
 
   def gameOver(healthProgress: Double, zombiesKilled: Int): Unit = {
@@ -35,18 +31,16 @@ class EndGameController(
     healthStatus.text = s"Health Remaining: $healthPercentage%"
     zombieKilled.text = s"Zombies Killed: $zombiesKilled"
 
-    def handlePlayAgain(): Unit = {
-      MainApp.showModeScene()
-    }
-
-    def handleExit(): Unit = {
-      System.exit(0)
-    }
   }
 
 
+  def handlePlayAgain(): Unit = {
+    MainApp.showModeScene()
+  }
 
-
+  def handleExit(): Unit = {
+    System.exit(0)
+  }
 
 
 

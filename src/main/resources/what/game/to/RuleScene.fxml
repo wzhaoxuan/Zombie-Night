@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="rule-normalZombie" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.RuleSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="what.game.to.controller.RuleSceneController">
    <children>
       <Label layoutX="669.0" layoutY="14.0" prefHeight="103.0" prefWidth="162.0" styleClass="rule-text" stylesheets="@style.css" text="Rule" />
       <Label fx:id="description" layoutX="74.0" layoutY="141.0" maxWidth="850.0" styleClass="description" stylesheets="@style.css" text="Label" wrapText="true" />
@@ -64,6 +64,6 @@
             </VBox>
          </children>
       </VBox>
-      <Button fx:id="backButton" layoutX="1316.0" layoutY="622.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-backButton" stylesheets="@style.css" text="Button" />
+      <Button fx:id="backButton" layoutX="1161.0" layoutY="707.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-backButton" stylesheets="@style.css" text="Button" />
    </children>
 </AnchorPane>
