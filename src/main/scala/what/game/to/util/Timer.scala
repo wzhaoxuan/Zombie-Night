@@ -6,7 +6,7 @@ import scalafx.util.Duration
 
 class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int, createZombies: () => Unit, checkGameOver: () => Unit) {
   private var remainingTime = totalTime
-  private var gameRunning = true // Flag to check if the game is running
+  private var gameRunning = true
   private var timeLine: Timeline = _
   private var spawnTimeLine: Timeline = _
 
