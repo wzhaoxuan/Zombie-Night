@@ -144,7 +144,7 @@ class DefenseZombie(_gameArea: AnchorPane, _onZombieClicked: () => Unit, _target
 
 object DefenseZombie{
   val imagePath = "/Images/Zombie/DefenseZombie.gif"
-  val zombieName = "NormalZombie"
+  val zombieName = "Normal Zombie"
   val zombieSpeed = 2
   val zombieRequiredClicks = 5
   val zombieDamage = 3

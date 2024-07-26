@@ -70,8 +70,15 @@
 }
 
 .rule-zombie{
-    -fx-font-size: 25;
+    -fx-font-size: 30;
     -fx-font-family: "Bookman Old Style";
     -fx-text-fill: black;
     -fx-alignment: center;
+    -fx-padding: 10 10 10 10;
+}
+
+.rule-normalZombie, .rule-speedZombie, .rule-defenseZombie{
+    -fx-font-size: 22;
+    -fx-font-family: "Bookman Old Style";
+    -fx-text-fill: black;
 }
