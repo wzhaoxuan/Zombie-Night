@@ -20,7 +20,7 @@ class RuleSceneController(
                          private val defenseZombieInfo: Label
                          ){
 
-  private def setZombieInfo[T](imageView: ImageView, zombieInfo: ZombieInfo, infoLabel: Label): Unit = {
+  private def setZombieInfo(imageView: ImageView, zombieInfo: ZombieInfo, infoLabel: Label): Unit = {
     imageView.setImage(new Image(zombieInfo.imagePath))
     infoLabel.text = s"${zombieInfo.zombieName} \n Speed: ${zombieInfo.zombieSpeed} " +
       s"\n Clicks: ${zombieInfo.zombieRequiredClicks} \n Damage: ${zombieInfo.zombieDamage}"

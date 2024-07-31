@@ -1,22 +1,17 @@
 package what.game.to.controller
 import what.game.to.model.{DefenseZombie, NormalZombie, Person, SpeedZombie, Zombie}
+import what.game.to.util.Timer
 import what.game.to.MainApp
 import scalafx.scene.control.{Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
-import scalafx.scene.image.ImageView
-import scalafx.Includes._
-import what.game.to.MainApp.showEndGameScene
-import what.game.to.util.Timer
 
-import scala.util.Random
 
 @sfxml
 class GameSceneController(
                            private val scoreLabel: Label,
                            private val gameArea: AnchorPane,
                            private val timerLabel: Label,
-//                           private val targetImage: ImageView,
                            private var healthPoint: ProgressBar,
                            private val zombieLabel: Label
                          ) {
@@ -29,11 +24,10 @@ class GameSceneController(
   private var maxZombies = 0
   private var currentZombieCount = 0
   private val victim = new Person(gameArea)
+  private var zombieController: Option[ZombieController] = None
   var gameRunning = true
 
-  private val normalZombie = new NormalZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
-  private val speedZombie = new SpeedZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
-  private val defenseZombie = new DefenseZombie(gameArea, handleZombieClick, victim, healthPoint, () => checkGameOver(), gameRunning)
+
 
 
   def initialize(): Unit = {
@@ -67,6 +61,16 @@ class GameSceneController(
         spawnZombieTime = 15
         maxZombies = 200
     }
+
+    // Create a new ZombieController instance with updated settings
+    zombieController = Some(new ZombieController(
+      gameArea,
+      handleZombieClick,
+      victim,
+      healthPoint,
+      () => checkGameOver(),
+      gameRunning
+    ))
   }
 
   private def createZombies(zombieNum: Int): Unit = {
@@ -95,12 +99,20 @@ class GameSceneController(
         }
       }
 
-      println("NormalZombie")
-      normalZombie.createZombies(normalZombieCount)
-      println("SpeedZombie")
-      speedZombie.createZombies(speedZombieCount)
-      println("DefenseZombie")
-      defenseZombie.createZombies(defenseZombieCount)
+      println("Creating zombies...")
+      val normalZombies = List.fill(normalZombieCount)(
+        new NormalZombie("/Images/Zombie/NormalZombie.gif", 300, 300, 4, 3, 2, 350)
+      )
+      val speedZombies = List.fill(speedZombieCount)(
+        new SpeedZombie("/Images/Zombie/SpeedZombie.gif", 250, 200, 8, 2, 1, 450)
+      )
+      val defenseZombies = List.fill(defenseZombieCount)(
+        new DefenseZombie("/Images/Zombie/DefenseZombie.gif", 300, 400, 2, 5, 3, 300)
+      )
+
+      val allZombies = normalZombies ++ speedZombies ++ defenseZombies
+
+      zombieController.foreach(_.createZombies(allZombies))
 
       currentZombieCount += (normalZombieCount + speedZombieCount + defenseZombieCount)
       updateZombieLabel()
@@ -139,9 +151,7 @@ class GameSceneController(
   }
 
   private def stopAllZombies(): Unit = {
-    normalZombie.stopAllZombies()
-    speedZombie.stopAllZombies()
-    defenseZombie.stopAllZombies()
+    zombieController.foreach(_.stopAllZombies())
     gameArea.children.clear()
   }
 

@@ -15,5 +15,6 @@ class Person(private val gameArea: AnchorPane) {
     gameArea.children.add(imageView)
   }
 
+
   def getImageView: ImageView = imageView
 }
