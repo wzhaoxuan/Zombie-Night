@@ -21,6 +21,7 @@ class ZombieController(
                         val checkGameOver: () => Unit,
                         var gameRunning: Boolean
                       ) {
+  private val timelines = ObservableBuffer[Timeline]()
 
   def createZombies(zombies: List[Zombie]): Unit = {
     println("Creating zombies")
@@ -82,6 +83,7 @@ class ZombieController(
           })
         })
       }
+      timelines += timeline
       timeline.play()
     }
   }
@@ -109,6 +111,7 @@ class ZombieController(
   def stopAllZombies(): Unit = {
     if (gameRunning) {
       gameRunning = false
+      timelines.foreach(_.stop()) // Stop all timelines
       gameArea.children.clear()
     }
   }
