@@ -11,7 +11,6 @@ import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.media.{Media, MediaPlayer}
-import what.game.to.model.Person
 
 class ZombieController(
                         val gameArea: AnchorPane,

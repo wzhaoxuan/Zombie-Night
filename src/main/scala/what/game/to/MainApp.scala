@@ -44,10 +44,6 @@ object MainApp extends JFXApp {
 
   def showModeScene(): Unit = {
     val modeSceneResource = getClass.getResource("/what/game/to/ModeScene.fxml")
-    if (modeSceneResource == null) {
-      println("ModeScene.fxml not found!")
-      return
-    }
     val modeSceneLoader = new FXMLLoader(modeSceneResource, NoDependencyResolver)
     modeSceneLoader.load()
     val modeSceneLayout: AnchorPane = modeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
@@ -96,8 +92,6 @@ object MainApp extends JFXApp {
       root = welcomeSceneLayout
     }
   }
-
-
 
   def setDifficulty(diff: String): Unit = {
     difficulty = diff

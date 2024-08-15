@@ -1,17 +1,7 @@
 package what.game.to.model
 import what.game.to.controller.ZombieController
-import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.AnchorPane
-import scalafx.scene.input.MouseEvent
 import scalafx.scene.control.ProgressBar
-import scalafx.util.Duration
-
-import scala.util.Random
-import scalafx.Includes._
-import scalafx.animation.{KeyFrame, Timeline}
-import scalafx.scene.media.{Media, MediaPlayer}
-
-import scala.collection.mutable.ListBuffer
 
 trait ZombieInfo{
   def imagePath: String
@@ -20,7 +10,6 @@ trait ZombieInfo{
   def zombieRequiredClicks: Int
   def zombieDamage: Int
 }
-
 
 abstract class Zombie(val imagePath: String,
                       val zombieWidth: Int,

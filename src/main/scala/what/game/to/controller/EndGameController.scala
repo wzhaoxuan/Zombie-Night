@@ -13,24 +13,18 @@ class EndGameController(
                          private val exit: Button
                        ){
 
-  playAgain.text = "Play Again"
-  exit.text = "Exit"
-
-
-  def showVictory(healthProgress: Double, zombiesKilled: Int): Unit = {
+  def showVictory(healthProgress: Double, score: Int): Unit = {
     val healthPercentage = (healthProgress * 100).toInt
     statusLabel.text = "Victory!!"
     healthStatus.text = s"Health Remaining: $healthPercentage"
-    zombieKilled.text = s"Zombies Killed: $zombiesKilled"
-
+    zombieKilled.text = s"Zombies Killed: $score"
   }
 
-  def gameOver(healthProgress: Double, zombiesKilled: Int): Unit = {
+  def gameOver(healthProgress: Double, score: Int): Unit = {
     val healthPercentage = (healthProgress * 100).toInt
     statusLabel.text = "Death"
     healthStatus.text = s"Health Remaining: $healthPercentage%"
-    zombieKilled.text = s"Zombies Killed: $zombiesKilled"
-
+    zombieKilled.text = s"Zombies Killed: $score"
   }
 
 

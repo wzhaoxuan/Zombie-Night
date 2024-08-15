@@ -54,7 +54,7 @@
 
 }
 
-.easyButton:hover, .rule-StartButton:hover, playAgain:hover{
+.easyButton:hover, .rule-StartButton:hover, .playAgain:hover{
     -fx-background-color: #19b6b6;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
