@@ -127,8 +127,8 @@ class GameSceneController(
   }
 
   private def startTimer(): Unit = {
-    val time = new Timer(totalTime, timerLabel, spawnZombieTime, () => createZombies(spawnZombieNum), () => checkGameOver(true))
-    time.start()
+    val time = new Timer(totalTime, timerLabel, spawnZombieTime)
+    time.start(() => createZombies(spawnZombieNum), () => checkGameOver(true))
   }
 
   private def stopAllZombies(): Unit = {
