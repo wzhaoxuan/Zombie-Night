@@ -28,19 +28,19 @@ class ZombieController(
 
     if (!gameRunning) return
 
-    zombies.foreach { zombieInfo =>
+    zombies.foreach { zombieInstance =>
       val zombie = new ImageView()
       zombie.getStyleClass.add("ImageView") // Add a style class to the ImageView
-      zombie.image = new Image(zombieInfo.imagePath)
-      zombie.fitWidth = zombieInfo.zombieWidth
-      zombie.fitHeight = zombieInfo.zombieHeight
+      zombie.image = new Image(zombieInstance.zombieInfo.imagePath)
+      zombie.fitWidth = zombieInstance.zombieWidth
+      zombie.fitHeight = zombieInstance.zombieHeight
 
-      val startX = -zombieInfo.zombieWidth - Random.nextInt(600)
+      val startX = -zombieInstance.zombieWidth - Random.nextInt(600)
       zombie.layoutX = startX
-      zombie.layoutY = zombieInfo.layoutY
-      println(s"Zombie created at ($startX, ${zombieInfo.layoutY})")
+      zombie.layoutY = zombieInstance.layoutY
+      println(s"Zombie created at ($startX, ${zombieInstance.layoutY})")
 
-      var remainingClicks = zombieInfo.requiredClicks
+      var remainingClicks = zombieInstance.zombieInfo.zombieRequiredClicks
       // Event Handler to count Zombie Click
       zombie.onMouseClicked = (_: MouseEvent) => {
         val clickPlayer = createClickSound()
@@ -61,15 +61,15 @@ class ZombieController(
           KeyFrame(Duration(30), onFinished = _ => {
             println("Timeline running")
             if (gameRunning) {
-              if (zombie.layoutX.value + zombieInfo.zombieWidth < gameArea.width.value) {
-                val zombieMovement = zombie.layoutX.value + zombieInfo.speed
+              if (zombie.layoutX.value + zombieInstance.zombieWidth < gameArea.width.value) {
+                val zombieMovement = zombie.layoutX.value + zombieInstance.zombieInfo.zombieSpeed
                 if ((zombieMovement + zombie.fitWidth.toInt) <= (gameArea.width.value - victim.getImageView.fitWidth.value + 50)) {
-                  zombie.layoutX.value += zombieInfo.speed // move at the defined speed
+                  zombie.layoutX.value += zombieInstance.zombieInfo.zombieSpeed // move at the defined speed
                 }
-                println(zombie.layoutX.value + zombieInfo.zombieWidth + ">=" + victim.getImageView.layoutX.value)
-                if (zombie.layoutX.value + zombieInfo.zombieWidth >= victim.getImageView.layoutX.value) {
+                println(zombie.layoutX.value + zombieInstance.zombieWidth + ">=" + victim.getImageView.layoutX.value)
+                if (zombie.layoutX.value + zombieInstance.zombieWidth >= victim.getImageView.layoutX.value) {
                   if (remainingClicks > 0) {
-                    reduceHealth(zombieInfo.attackDamage)
+                    reduceHealth(zombieInstance.zombieInfo.zombieDamage)
                     print("Reduce Health")
                   }
                 }

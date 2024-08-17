@@ -1,9 +1,7 @@
 package what.game.to.controller
 import what.game.to.MainApp
 import scalafx.scene.control.Button
-import scalafx.event.ActionEvent
 import scalafxml.core.macros.sfxml
-import scalafx.Includes._
 
 @sfxml
 class ModeSceneController(

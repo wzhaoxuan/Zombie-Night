@@ -36,7 +36,7 @@ class RuleSceneController(
     val descriptionText: String = {
       difficulty match {
         case "Easy" =>
-          setZombieInfo(normalZombieImage, NormalZombie, normalZombieInfo)
+          setZombieInfo(normalZombieImage, ZombieInfo.normalZombie, normalZombieInfo)
           clearZombieInfo(speedZombieImage,speedZombieInfo)
           clearZombieInfo(defenseZombieImage,defenseZombieInfo)
           "EasyMode: Given a 120-second duration, your goal is to rescue the person from being " +
@@ -46,8 +46,8 @@ class RuleSceneController(
 
 
         case "Normal" =>
-          setZombieInfo(normalZombieImage, NormalZombie, normalZombieInfo)
-          setZombieInfo(speedZombieImage, SpeedZombie, speedZombieInfo)
+          setZombieInfo(normalZombieImage, ZombieInfo.normalZombie, normalZombieInfo)
+          setZombieInfo(speedZombieImage, ZombieInfo.speedZombie, speedZombieInfo)
           clearZombieInfo(defenseZombieImage,defenseZombieInfo)
           "NormalMode: Given a 120-second duration, your goal is to rescue the person from being " +
           "killed by zombies by shooting them with clicks. There are total of 150 zombies appears in this mode " +
@@ -56,9 +56,9 @@ class RuleSceneController(
           "essential for effective gameplay."
 
         case "Hard" =>
-          setZombieInfo(normalZombieImage, NormalZombie, normalZombieInfo)
-          setZombieInfo(speedZombieImage, SpeedZombie, speedZombieInfo)
-          setZombieInfo(defenseZombieImage, DefenseZombie, defenseZombieInfo)
+          setZombieInfo(normalZombieImage, ZombieInfo.normalZombie, normalZombieInfo)
+          setZombieInfo(speedZombieImage, ZombieInfo.speedZombie, speedZombieInfo)
+          setZombieInfo(defenseZombieImage, ZombieInfo.defenseZombie, defenseZombieInfo)
           "HardMode: Given a 120-second duration, your goal is to rescue the person from being " +
           "killed by zombies by shooting them with clicks. There are total of 200 zombies appears in this mode " +
           "and 8 zombie spawning in every 15 seconds. There are three types of zombies, each with its own attributes: " +

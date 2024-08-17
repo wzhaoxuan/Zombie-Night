@@ -13,6 +13,7 @@ import scalafx.stage.{Modality, Stage, StageStyle}
 object MainApp extends JFXApp {
   // Variable to store difficulty level
   private var difficulty: String = "Easy"
+//  private var gameSceneController: Option[GameSceneController] = None
 
   // Load RootLayout.fxml
   val rootResource = getClass.getResource("WelcomeScene.fxml")
@@ -38,6 +39,7 @@ object MainApp extends JFXApp {
       root = gameSceneLayout
     }
     val control = gameSceneLoader.getController[GameSceneController#Controller]
+//    gameSceneController = control
     control.setDifficulty(difficulty)
     control.initialize()
   }
@@ -50,7 +52,7 @@ object MainApp extends JFXApp {
     stage.scene = new Scene {
       root = modeSceneLayout
     }
-    val control = modeSceneLoader.getController[ModeSceneController#Controller]
+//    val control = modeSceneLoader.getController[ModeSceneController#Controller]
   }
 
   def showRule(): Unit = {
@@ -96,6 +98,10 @@ object MainApp extends JFXApp {
   def setDifficulty(diff: String): Unit = {
     difficulty = diff
   }
+
+//  def gameSceneController_=(controller: Option[GameSceneController]): Unit = {
+//    gameSceneController = controller
+//  }
 
   // Entry point
   showWelcome()

@@ -2,7 +2,7 @@ package what.game.to.controller
 import what.game.to.model.{DefenseZombie, NormalZombie, Person, SpeedZombie}
 import what.game.to.util.Timer
 import what.game.to.MainApp
-import scalafx.scene.control.{Label, ProgressBar}
+import scalafx.scene.control.{Button, Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.macros.sfxml
 
@@ -12,8 +12,10 @@ class GameSceneController(
                            private val gameArea: AnchorPane,
                            private val timerLabel: Label,
                            private var healthPoint: ProgressBar,
-                           private val zombieLabel: Label
+                           private val zombieLabel: Label,
+                           private val pauseButton: Button
                          ) {
+
   private var difficulty: String = _
   private val totalTime = 120
   private var spawnZombieNum = 0
@@ -21,8 +23,10 @@ class GameSceneController(
   private var maxZombies = 0
   private var currentZombieCount = 0
   private var gameRunning = true
-  private val victim = new Person(gameArea)
+//  private var gamePaused = false
   private var zombieController: Option[ZombieController] = None
+  private var timer: Option[Timer] = None
+  private val victim = new Person(gameArea)
   private val scoreManager = new Score(scoreLabel)
 
   def initialize(): Unit = {
@@ -31,6 +35,7 @@ class GameSceneController(
     startTimer()
     createZombies(10) // Using a fixed number here for initial setup
     updateZombieLabel()
+//    pauseButton.onAction = _ => pauseGame()
   }
 
   def setDifficulty(diff: String): Unit = {
@@ -87,13 +92,13 @@ class GameSceneController(
 
       println("Creating zombies...")
       val normalZombies = List.fill(normalZombieCount)(
-        new NormalZombie("/Images/Zombie/NormalZombie.gif", 300, 300, 4, 3, 2, 350)
+        new NormalZombie(300, 300, 350)
       )
       val speedZombies = List.fill(speedZombieCount)(
-        new SpeedZombie("/Images/Zombie/SpeedZombie.gif", 250, 200, 8, 2, 1, 450)
+        new SpeedZombie(250, 200, 450)
       )
       val defenseZombies = List.fill(defenseZombieCount)(
-        new DefenseZombie("/Images/Zombie/DefenseZombie.gif", 300, 400, 2, 5, 3, 270)
+        new DefenseZombie(300, 400, 270)
       )
 
       val allZombies = normalZombies ++ speedZombies ++ defenseZombies
@@ -110,8 +115,10 @@ class GameSceneController(
   }
 
   private def handleZombieClick(): Unit = {
-    scoreManager.incrementScore()
-    checkGameOver()
+//    if (!gamePaused) {
+      scoreManager.incrementScore()
+      checkGameOver()
+//    }
   }
 
   private def checkGameOver(timeRanOut: Boolean = false): Unit = {
@@ -129,12 +136,36 @@ class GameSceneController(
   private def startTimer(): Unit = {
     val time = new Timer(totalTime, timerLabel, spawnZombieTime)
     time.start(() => createZombies(spawnZombieNum), () => checkGameOver(true))
-  }
+    }
+
+
+//  private def stopTimer(): Unit = {
+//    timer.foreach(_.stop())
+//  }
 
   private def stopAllZombies(): Unit = {
     zombieController.foreach(_.stopAllZombies())
     gameArea.children.clear()
   }
+
+//  def pauseGame(): Unit = {
+//    if (gameRunning && !gamePaused) {
+//      gamePaused = true
+//      stopTimer()
+//      stopAllZombies()
+//      MainApp.showPauseScene()
+//    }
+//  }
+
+//  def resumeGame(): Unit = {
+//    if (gamePaused) {
+//      gamePaused = false
+//      startTimer()
+//      createZombies(0) // Resume zombie creation if needed
+//    }
+//  }
+
+
 
   def exit(): Unit = {
 //    MainApp.showModeScene()

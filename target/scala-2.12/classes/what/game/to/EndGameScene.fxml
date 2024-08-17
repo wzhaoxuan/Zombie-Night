@@ -25,16 +25,16 @@
          <children>
             <VBox prefHeight="213.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <HBox prefHeight="217.0" prefWidth="680.0">
+                  <HBox prefHeight="217.0" prefWidth="500.0">
                      <children>
                         <AnchorPane prefHeight="210.0" prefWidth="362.0">
                            <children>
-                              <Button fx:id="playAgain" alignment="CENTER" layoutX="95.0" layoutY="70.0" mnemonicParsing="false" onAction="#handlePlayAgain" prefHeight="71.0" prefWidth="193.0" styleClass="playAgain" stylesheets="@style.css" text="Play Again" />
+                              <Button fx:id="playAgain" alignment="CENTER" layoutX="70.0" layoutY="69.0" mnemonicParsing="false" onAction="#handlePlayAgain" prefHeight="71.0" prefWidth="193.0" styleClass="playAgain" stylesheets="@style.css" text="Play Again" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="210.0" prefWidth="362.0">
                            <children>
-                              <Button fx:id="exit" alignment="CENTER" layoutX="95.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="Exit" />
+                              <Button fx:id="exit" alignment="CENTER" layoutX="70.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="Exit" />
                            </children>
                         </AnchorPane>
                      </children>
