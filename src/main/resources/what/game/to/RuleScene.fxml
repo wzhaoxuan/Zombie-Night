@@ -64,6 +64,6 @@
             </VBox>
          </children>
       </VBox>
-      <Button fx:id="backButton" layoutX="1060.0" layoutY="707.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="rule-backButton" stylesheets="@style.css" text="Button" />
+      <Button fx:id="backButton" layoutX="1060.0" layoutY="707.0" mnemonicParsing="false" onAction="#handelBackButton" prefHeight="65.0" prefWidth="128.0" styleClass="backButton" stylesheets="@style.css" text="Button" />
    </children>
 </AnchorPane>

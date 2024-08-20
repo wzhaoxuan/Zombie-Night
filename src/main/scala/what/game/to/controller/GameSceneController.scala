@@ -1,6 +1,6 @@
 package what.game.to.controller
 import what.game.to.model.{DefenseZombie, NormalZombie, Person, SpeedZombie}
-import what.game.to.util.Timer
+import what.game.to.util.{Timer, Difficulty}
 import what.game.to.MainApp
 import scalafx.scene.control.{Button, Label, ProgressBar}
 import scalafx.scene.layout.AnchorPane
@@ -16,14 +16,11 @@ class GameSceneController(
                            private val pauseButton: Button
                          ) {
 
-  private var difficulty: String = _
+  var difficulty: Difficulty = _
   private val totalTime = 120
-  private var spawnZombieNum = 0
-  private var spawnZombieTime = 0
-  private var maxZombies = 0
   private var currentZombieCount = 0
   private var gameRunning = true
-//  private var gamePaused = false
+  private var gamePaused = false
   private var zombieController: Option[ZombieController] = None
   private var timer: Option[Timer] = None
   private val victim = new Person(gameArea)
@@ -31,34 +28,19 @@ class GameSceneController(
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
-    victim.setupImage("/Images/yang-gang-mini-yang.gif", 1189.0, 297.0, 255.0, 346.0)
+    victim.setupImage("/Images/Victim/yang-gang-mini-yang.gif", 1189.0, 297.0, 255.0, 346.0)
     startTimer()
     createZombies(10) // Using a fixed number here for initial setup
     updateZombieLabel()
-//    pauseButton.onAction = _ => pauseGame()
+    pauseButton.onAction = _ => pauseGame()
   }
 
-  def setDifficulty(diff: String): Unit = {
+  def setDifficulty(diff: Difficulty): Unit = {
     difficulty = diff
     difficultySettings()
   }
 
   private def difficultySettings(): Unit = {
-    difficulty match {
-      case "Easy" =>
-        spawnZombieNum = 3
-        spawnZombieTime = 5
-        maxZombies = 50
-      case "Normal" =>
-        spawnZombieNum = 5
-        spawnZombieTime = 10
-        maxZombies = 150
-      case "Hard" =>
-        spawnZombieNum = 3
-        spawnZombieTime = 15
-        maxZombies = 200
-    }
-
     zombieController = Some(new ZombieController(
       gameArea,
       handleZombieClick,
@@ -70,12 +52,12 @@ class GameSceneController(
   }
 
   private def createZombies(zombieNum: Int): Unit = {
-    if (!gameRunning) return
+    if (!gameRunning|| gamePaused) return
 
-    val zombiesLeft = maxZombies - currentZombieCount
+    val zombiesLeft = difficulty.maxZombies - currentZombieCount
 
     if (zombiesLeft > 0) {
-      val (normalZombieCount, speedZombieCount, defenseZombieCount) = difficulty match {
+      val (normalZombieCount, speedZombieCount, defenseZombieCount) = difficulty.level match {
         case "Easy" =>
           val normalZombies = math.min(zombieNum, zombiesLeft)
           (normalZombies, 0, 0)
@@ -111,14 +93,15 @@ class GameSceneController(
   }
 
   private def updateZombieLabel(): Unit = {
+    val maxZombies = difficulty.maxZombies
     zombieLabel.text = s"Zombie: $currentZombieCount/$maxZombies"
   }
 
   private def handleZombieClick(): Unit = {
-//    if (!gamePaused) {
+    if (!gamePaused) {
       scoreManager.incrementScore()
       checkGameOver()
-//    }
+    }
   }
 
   private def checkGameOver(timeRanOut: Boolean = false): Unit = {
@@ -126,7 +109,7 @@ class GameSceneController(
       gameRunning = false
       stopAllZombies()
       MainApp.showEndGameScene(healthPoint.progress.value, scoreManager.getScore)
-    } else if (scoreManager.getScore >= maxZombies || timeRanOut) {
+    } else if (scoreManager.getScore >= difficulty.maxZombies || timeRanOut) {
       gameRunning = false
       stopAllZombies()
       MainApp.showEndGameScene(healthPoint.progress.value, scoreManager.getScore)
@@ -134,38 +117,37 @@ class GameSceneController(
   }
 
   private def startTimer(): Unit = {
-    val time = new Timer(totalTime, timerLabel, spawnZombieTime)
-    time.start(() => createZombies(spawnZombieNum), () => checkGameOver(true))
+    val time = new Timer(totalTime, timerLabel, difficulty.spawnZombieTime)
+    timer = Some(time)
+    time.start(() => createZombies(difficulty.spawnZombieNum), () => checkGameOver(true))
     }
 
 
-//  private def stopTimer(): Unit = {
-//    timer.foreach(_.stop())
-//  }
+  private def stopTimer(): Unit = {
+    timer.foreach(_.stop())
+  }
 
   private def stopAllZombies(): Unit = {
     zombieController.foreach(_.stopAllZombies())
     gameArea.children.clear()
   }
 
-//  def pauseGame(): Unit = {
-//    if (gameRunning && !gamePaused) {
-//      gamePaused = true
-//      stopTimer()
-//      stopAllZombies()
-//      MainApp.showPauseScene()
-//    }
-//  }
+  def pauseGame(): Unit = {
+    if (gameRunning && !gamePaused) {
+      gamePaused = true
+      stopTimer()
+      zombieController.foreach(_.pauseZombies())
+      MainApp.showPauseScene()
+    }
+  }
 
-//  def resumeGame(): Unit = {
-//    if (gamePaused) {
-//      gamePaused = false
-//      startTimer()
-//      createZombies(0) // Resume zombie creation if needed
-//    }
-//  }
-
-
+  def resume(): Unit = {
+    if (gameRunning && gamePaused) {
+      gamePaused = false
+      startTimer()
+      zombieController.foreach(_.resumeZombies())
+    }
+  }
 
   def exit(): Unit = {
 //    MainApp.showModeScene()

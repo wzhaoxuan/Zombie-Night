@@ -20,4 +20,3 @@ class SpeedZombie(_zombieWidth: Int, _zombieHeight: Int, _layoutY: Int)
 
 class DefenseZombie(_zombieWidth: Int, _zombieHeight: Int, _layoutY: Int)
   extends Zombie(ZombieInfo.defenseZombie, _zombieWidth, _zombieHeight, _layoutY)
-8

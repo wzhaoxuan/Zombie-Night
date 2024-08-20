@@ -7,7 +7,8 @@ import scalafxml.core.macros.sfxml
 class ModeSceneController(
                            private val easyMode: Button,
                            private val normalMode: Button,
-                           private val hardMode: Button
+                           private val hardMode: Button,
+                           private val back: Button
                          ) {
 
 
@@ -25,5 +26,9 @@ class ModeSceneController(
   def handleHardButton(): Unit = {
     MainApp.setDifficulty("Hard")
     MainApp.showRule()
+  }
+
+  def backMainPage(): Unit = {
+    MainApp.showWelcome()
   }
 }

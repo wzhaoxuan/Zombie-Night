@@ -12,11 +12,6 @@ class Score(private val scoreLabel: Label) {
     updateScoreLabel()
   }
 
-  def resetScore(): Unit = {
-    score = 0
-    updateScoreLabel()
-  }
-
   private def updateScoreLabel(): Unit = {
     scoreLabel.text = s"Score: $score"
   }

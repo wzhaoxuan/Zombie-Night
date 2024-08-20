@@ -1,19 +1,22 @@
 package what.game.to
+import what.game.to.util.Difficulty
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
-import scalafx.scene.layout.BorderPane
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, RuleSceneController}
+import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, PauseSceneController, RuleSceneController}
 import scalafx.Includes._
-import scalafx.stage.{Modality, Stage, StageStyle}
+import scalafx.stage.StageStyle
+
 
 object MainApp extends JFXApp {
-  // Variable to store difficulty level
-  private var difficulty: String = "Easy"
-//  private var gameSceneController: Option[GameSceneController] = None
+  // Variable to store level level
+  private var level: String = "Easy"
+  var gameSceneController: Option[GameSceneController#Controller] = None
+
+  private var difficulty: Difficulty = _
 
   // Load RootLayout.fxml
   val rootResource = getClass.getResource("WelcomeScene.fxml")
@@ -39,8 +42,21 @@ object MainApp extends JFXApp {
       root = gameSceneLayout
     }
     val control = gameSceneLoader.getController[GameSceneController#Controller]
-//    gameSceneController = control
+    control.difficulty = difficulty
     control.setDifficulty(difficulty)
+    control.initialize()
+    gameSceneController = Some(control)
+  }
+
+  def showPauseScene(): Unit = {
+    val pauseSceneResource = getClass.getResource("/what/game/to/GamePause.fxml")
+    val pauseSceneLoader = new FXMLLoader(pauseSceneResource, NoDependencyResolver)
+    pauseSceneLoader.load()
+    val pauseSceneLayout: AnchorPane = pauseSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = pauseSceneLayout
+    }
+    val control = pauseSceneLoader.getController[PauseSceneController#Controller]
     control.initialize()
   }
 
@@ -64,8 +80,8 @@ object MainApp extends JFXApp {
       root = ruleSceneLayout
     }
     val control = ruleSceneLoader.getController[RuleSceneController#Controller]
-    control.difficultyDescription(difficulty)
-
+    difficulty = new Difficulty(level)
+    control.setDifficulty(difficulty)
   }
 
   def showEndGameScene(healthProgress: Double, zombiesKilled: Int): Unit = {
@@ -96,12 +112,9 @@ object MainApp extends JFXApp {
   }
 
   def setDifficulty(diff: String): Unit = {
-    difficulty = diff
+    level = diff
   }
 
-//  def gameSceneController_=(controller: Option[GameSceneController]): Unit = {
-//    gameSceneController = controller
-//  }
 
   // Entry point
   showWelcome()

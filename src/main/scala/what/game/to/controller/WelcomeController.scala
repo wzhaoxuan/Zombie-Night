@@ -9,4 +9,7 @@ class WelcomeController{
   def getStart(): Unit = {
     MainApp.showModeScene()
   }
+  def exit(): Unit = {
+    System.exit(0)
+  }
 }

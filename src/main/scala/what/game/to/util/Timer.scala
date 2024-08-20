@@ -44,7 +44,20 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
   private def timeUp(checkGameOver: () => Unit): Unit = {
     gameRunning = false
     checkGameOver()
-    timeLine.stop()
-    spawnTimeLine.stop()
+    stop() // Stop both timelines when time is up
+  }
+
+  def stop(): Unit = {
+    gameRunning = false
+    if (timeLine != null) timeLine.stop()
+    if (spawnTimeLine != null) spawnTimeLine.stop()
+  }
+
+  def resume(): Unit = {
+    if (!gameRunning) {
+      gameRunning = true
+      timeLine.play()
+      spawnTimeLine.play()
+    }
   }
 }

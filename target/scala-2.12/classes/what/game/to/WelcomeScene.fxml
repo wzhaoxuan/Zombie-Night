@@ -27,7 +27,12 @@
                         <Font name="System Bold" size="65.0" />
                     </font>
                 </Label>
-                <Button mnemonicParsing="false" onAction="#getStart" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Enter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                      <Button layoutX="280.0" layoutY="61.0" mnemonicParsing="false" onAction="#getStart" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Enter" />
+                  <Button layoutX="280.0" layoutY="146.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Exit" />
+               </children>
+            </AnchorPane>
             </children>
         </GridPane>
     </children>

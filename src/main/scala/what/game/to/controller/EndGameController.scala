@@ -36,7 +36,4 @@ class EndGameController(
     System.exit(0)
   }
 
-
-
-
 }
