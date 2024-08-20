@@ -13,14 +13,12 @@ class GameSceneController(
                            private val timerLabel: Label,
                            private var healthPoint: ProgressBar,
                            private val zombieLabel: Label,
-                           private val pauseButton: Button
                          ) {
 
   var difficulty: Difficulty = _
   private val totalTime = 120
   private var currentZombieCount = 0
   private var gameRunning = true
-  private var gamePaused = false
   private var zombieController: Option[ZombieController] = None
   private var timer: Option[Timer] = None
   private val victim = new Person(gameArea)
@@ -32,7 +30,6 @@ class GameSceneController(
     startTimer()
     createZombies(10) // Using a fixed number here for initial setup
     updateZombieLabel()
-    pauseButton.onAction = _ => pauseGame()
   }
 
 
@@ -48,7 +45,7 @@ class GameSceneController(
   }
 
   private def createZombies(zombieNum: Int): Unit = {
-    if (!gameRunning|| gamePaused) return
+    if (!gameRunning) return
 
     val zombiesLeft = difficulty.maxZombies - currentZombieCount
 
@@ -94,10 +91,8 @@ class GameSceneController(
   }
 
   private def handleZombieClick(): Unit = {
-    if (!gamePaused) {
       scoreManager.incrementScore()
       checkGameOver()
-    }
   }
 
   private def checkGameOver(timeRanOut: Boolean = false): Unit = {
@@ -118,31 +113,9 @@ class GameSceneController(
     time.start(() => createZombies(difficulty.spawnZombieNum), () => checkGameOver(true))
     }
 
-
-  private def stopTimer(): Unit = {
-    timer.foreach(_.stop())
-  }
-
   private def stopAllZombies(): Unit = {
     zombieController.foreach(_.stopAllZombies())
     gameArea.children.clear()
-  }
-
-  def pauseGame(): Unit = {
-    if (gameRunning && !gamePaused) {
-      gamePaused = true
-      stopTimer()
-      zombieController.foreach(_.pauseZombies())
-      MainApp.showPauseScene()
-    }
-  }
-
-  def resume(): Unit = {
-    if (gameRunning && gamePaused) {
-      gamePaused = false
-      startTimer()
-      zombieController.foreach(_.resumeZombies())
-    }
   }
 
   def exit(): Unit = {

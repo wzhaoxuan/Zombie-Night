@@ -6,17 +6,16 @@ import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, PauseSceneController, RuleSceneController}
+import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, RuleSceneController}
 import scalafx.Includes._
 import scalafx.stage.StageStyle
 
 
 object MainApp extends JFXApp {
-  // Variable to store level level
-  private var level: String = "Easy"
-  var gameSceneController: Option[GameSceneController#Controller] = None
-
+  // Variable to store level
+  private var level: String = _
   private var difficulty: Difficulty = _
+
 
   // Load RootLayout.fxml
   val rootResource = getClass.getResource("WelcomeScene.fxml")
@@ -45,19 +44,6 @@ object MainApp extends JFXApp {
     control.difficulty = difficulty
     control.difficultySettings()
     control.initialize()
-    gameSceneController = Some(control)
-  }
-
-  def showPauseScene(): Unit = {
-    val pauseSceneResource = getClass.getResource("/what/game/to/GamePause.fxml")
-    val pauseSceneLoader = new FXMLLoader(pauseSceneResource, NoDependencyResolver)
-    pauseSceneLoader.load()
-    val pauseSceneLayout: AnchorPane = pauseSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
-    stage.scene = new Scene {
-      root = pauseSceneLayout
-    }
-    val control = pauseSceneLoader.getController[PauseSceneController#Controller]
-    control.initialize()
   }
 
   def showModeScene(): Unit = {
@@ -68,7 +54,6 @@ object MainApp extends JFXApp {
     stage.scene = new Scene {
       root = modeSceneLayout
     }
-//    val control = modeSceneLoader.getController[ModeSceneController#Controller]
   }
 
   def showRule(): Unit = {
@@ -114,7 +99,6 @@ object MainApp extends JFXApp {
   def setDifficulty(diff: String): Unit = {
     level = diff
   }
-
 
   // Entry point
   showWelcome()

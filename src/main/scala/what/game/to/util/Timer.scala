@@ -52,12 +52,4 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
     if (timeLine != null) timeLine.stop()
     if (spawnTimeLine != null) spawnTimeLine.stop()
   }
-
-  def resume(): Unit = {
-    if (!gameRunning) {
-      gameRunning = true
-      timeLine.play()
-      spawnTimeLine.play()
-    }
-  }
 }

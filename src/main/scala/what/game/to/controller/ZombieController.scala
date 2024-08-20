@@ -21,7 +21,8 @@ class ZombieController(
                         var gameRunning: Boolean
                       ) {
   private val timelines = ObservableBuffer[Timeline]()
-  private var zombieStates: List[(ImageView, Timeline)] = List()
+  private var zombieStates: List[(ImageView, Double, Timeline)] = List()
+  private var zombieMap: Map[ImageView, Timeline] = Map()
 
   def createZombies(zombies: List[Zombie]): Unit = {
     println("Creating zombies")
@@ -84,7 +85,7 @@ class ZombieController(
         })
       }
       timelines += timeline
-      zombieStates = (zombie, timeline) :: zombieStates
+      zombieMap += (zombie -> timeline)
       timeline.play()
     }
   }
@@ -115,13 +116,5 @@ class ZombieController(
       timelines.foreach(_.stop()) // Stop all timelines
       gameArea.children.clear()
     }
-  }
-
-  def pauseZombies(): Unit = {
-    timelines.foreach(_.pause())
-  }
-
-  def resumeZombies(): Unit = {
-    timelines.foreach(_.play())
   }
 }
