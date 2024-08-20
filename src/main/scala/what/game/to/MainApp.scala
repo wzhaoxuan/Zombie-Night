@@ -43,7 +43,7 @@ object MainApp extends JFXApp {
     }
     val control = gameSceneLoader.getController[GameSceneController#Controller]
     control.difficulty = difficulty
-    control.setDifficulty(difficulty)
+    control.difficultySettings()
     control.initialize()
     gameSceneController = Some(control)
   }

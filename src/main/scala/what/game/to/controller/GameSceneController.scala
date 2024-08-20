@@ -35,12 +35,8 @@ class GameSceneController(
     pauseButton.onAction = _ => pauseGame()
   }
 
-  def setDifficulty(diff: Difficulty): Unit = {
-    difficulty = diff
-    difficultySettings()
-  }
 
-  private def difficultySettings(): Unit = {
+  def difficultySettings(): Unit = {
     zombieController = Some(new ZombieController(
       gameArea,
       handleZombieClick,
