@@ -1,0 +1,42 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\wong zhao xuan\IdeaProjects\finalprojectv2-wzhaoxuan\target\scala-2.12\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\wong zhao xuan\IdeaProjects\finalprojectv2-wzhaoxuan\target\scala-2.12\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameSceneController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ZombieInfo$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RuleSceneController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	EndGameController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ZombieInfo.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ZombieController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$6.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Timer$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Timer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ZombieController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NormalZombie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Difficulty.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RuleSceneController$Controller.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WelcomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DefenseZombie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Person.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	WelcomeController$Controller.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$1$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Score.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$5.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ModeSceneController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Timer$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	EndGameController$Controller.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ModeSceneController$Controller.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainApp$$anon$7.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SpeedZombie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameSceneController$Controller.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Zombie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: C:\Users\wong zhao xuan\IdeaProjects\finalprojectv2-wzhaoxuan\target\scala-2.12\classes.bak[0m

@@ -1,20 +1,22 @@
 package what.game.to
-import what.game.to.util.Difficulty
-
+import what.game.to.util.{Database, Difficulty}
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.scene.layout.AnchorPane
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import what.game.to.controller.{EndGameController, GameSceneController, ModeSceneController, RuleSceneController}
+import what.game.to.controller.{EndGameController, GameSceneController, RuleSceneController}
 import scalafx.Includes._
 import scalafx.stage.StageStyle
+import what.game.to.model.Player
 
 
 object MainApp extends JFXApp {
+  Database.setupDB()
   // Variable to store level
   private var level: String = _
   private var difficulty: Difficulty = _
+  val currentPlayer: Player = Player("DEFAULT")
 
 
   // Load RootLayout.fxml
@@ -32,18 +34,25 @@ object MainApp extends JFXApp {
     }
   }
 
-  def showGameScene(): Unit = {
-    val gameSceneResource = getClass.getResource("/what/game/to/GameScene.fxml")
-    val gameSceneLoader = new FXMLLoader(gameSceneResource, NoDependencyResolver)
-    gameSceneLoader.load()
-    val gameSceneLayout: AnchorPane = gameSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+  def showWelcome(): Unit = {
+    val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
+    val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
+    welcomeSceneLoader.load()
+    val welcomeSceneLayout: AnchorPane = welcomeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
     stage.scene = new Scene {
-      root = gameSceneLayout
+      root = welcomeSceneLayout
     }
-    val control = gameSceneLoader.getController[GameSceneController#Controller]
-    control.difficulty = difficulty
-    control.difficultySettings()
-    control.initialize()
+  }
+
+  def showPlayerScene(): Unit ={
+    currentPlayer.clear()
+    val playerSceneResource = getClass.getResource("/what/game/to/PlayerInfoScene.fxml")
+    val playerSceneLoader = new FXMLLoader(playerSceneResource, NoDependencyResolver)
+    playerSceneLoader.load()
+    val playerSceneLayout: AnchorPane = playerSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = playerSceneLayout
+    }
   }
 
   def showModeScene(): Unit = {
@@ -69,6 +78,20 @@ object MainApp extends JFXApp {
     control.setDifficulty(difficulty)
   }
 
+  def showGameScene(): Unit = {
+    val gameSceneResource = getClass.getResource("/what/game/to/GameScene.fxml")
+    val gameSceneLoader = new FXMLLoader(gameSceneResource, NoDependencyResolver)
+    gameSceneLoader.load()
+    val gameSceneLayout: AnchorPane = gameSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+    stage.scene = new Scene {
+      root = gameSceneLayout
+    }
+    val control = gameSceneLoader.getController[GameSceneController#Controller]
+    control.difficulty = difficulty
+    control.difficultySettings()
+    control.initialize()
+  }
+
   def showEndGameScene(healthProgress: Double, zombiesKilled: Int): Unit = {
     val victorySceneResource = getClass.getResource("EndGameScene.fxml")
     val victorySceneLoader = new FXMLLoader(victorySceneResource, NoDependencyResolver)
@@ -86,18 +109,18 @@ object MainApp extends JFXApp {
     }
   }
 
-  def showWelcome(): Unit = {
-    val welcomeSceneResource = getClass.getResource("WelcomeScene.fxml")
-    val welcomeSceneLoader = new FXMLLoader(welcomeSceneResource, NoDependencyResolver)
-    welcomeSceneLoader.load()
-    val welcomeSceneLayout: AnchorPane = welcomeSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
+  def showLeaderBoard(): Unit = {
+    val leaderBoardSceneResource = getClass.getResource("LeaderBoardScene.fxml")
+    val leaderBoardSceneLoader = new FXMLLoader(leaderBoardSceneResource, NoDependencyResolver)
+    leaderBoardSceneLoader.load()
+    val leaderBoardSceneLayout: AnchorPane = leaderBoardSceneLoader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
     stage.scene = new Scene {
-      root = welcomeSceneLayout
+      root = leaderBoardSceneLayout
     }
   }
 
-  def setDifficulty(diff: String): Unit = {
-    level = diff
+  def setDifficulty(difficulty: String): Unit = {
+    level = difficulty
   }
 
   // Entry point

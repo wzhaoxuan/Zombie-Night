@@ -1,6 +1,8 @@
 package what.game.to.controller
 
 import scalafx.scene.control.Label
+import what.game.to.MainApp
+import what.game.to.model.Player
 
 class Score(private val scoreLabel: Label) {
   private var score: Int = 0

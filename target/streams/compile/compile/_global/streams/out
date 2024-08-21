@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\wong zhao xuan\IdeaProjects\finalprojectv2-wzhaoxuan\src\main\scala\what\game\to\util\Database.scala:22:7: not found: value Player[0m
+[0m[[0m[31merror[0m] [0m[0m      Player.initializeTable()[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

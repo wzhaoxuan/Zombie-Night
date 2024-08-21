@@ -1,5 +1,5 @@
 package what.game.to.controller
-import what.game.to.model.{Person, Zombie}
+import what.game.to.model.{Person, Player, Zombie}
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.AnchorPane
 import scalafx.scene.input.MouseEvent
@@ -11,6 +11,7 @@ import scalafx.Includes._
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.media.{Media, MediaPlayer}
+import what.game.to.MainApp
 
 class ZombieController(
                         val gameArea: AnchorPane,
@@ -21,7 +22,6 @@ class ZombieController(
                         var gameRunning: Boolean
                       ) {
   private val timelines = ObservableBuffer[Timeline]()
-  private var zombieStates: List[(ImageView, Double, Timeline)] = List()
   private var zombieMap: Map[ImageView, Timeline] = Map()
 
   def createZombies(zombies: List[Zombie]): Unit = {

@@ -3,12 +3,15 @@ package what.game.to.util
 import scalafx.animation.{KeyFrame, Timeline}
 import scalafx.scene.control.Label
 import scalafx.util.Duration
+import what.game.to.MainApp
+import what.game.to.model.Player
 
 class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
   private var remainingTime = totalTime
   private var gameRunning = true
   private var timeLine: Timeline = _
   private var spawnTimeLine: Timeline = _
+  private val player: Player = MainApp.currentPlayer
 
   def start(createZombies: () => Unit, checkGameOver: () => Unit): Unit = {
     timeLine = new Timeline {
@@ -18,8 +21,10 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
           if (gameRunning) {
             remainingTime -= 1
             timerLabel.text = remainingTime.toString
+            player.recordTimer(remainingTime)
             if (remainingTime <= 0) {
               timeUp(checkGameOver)
+              player.recordTimer(0)
             }
           }
         })

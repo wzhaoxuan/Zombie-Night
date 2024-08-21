@@ -7,7 +7,7 @@ import what.game.to.MainApp
 class WelcomeController{
 
   def getStart(): Unit = {
-    MainApp.showModeScene()
+    MainApp.showPlayerScene()
   }
   def exit(): Unit = {
     System.exit(0)

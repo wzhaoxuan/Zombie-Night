@@ -3,6 +3,7 @@ package what.game.to.controller
 import scalafx.scene.control.{Button, Label}
 import scalafxml.core.macros.sfxml
 import what.game.to.MainApp
+import what.game.to.model.Player
 
 @sfxml
 class EndGameController(
@@ -10,14 +11,18 @@ class EndGameController(
                          private val healthStatus: Label,
                          private val zombieKilled: Label,
                          private val playAgain: Button,
-                         private val exit: Button
+                         private val exit: Button,
+                         private val leaderBoard: Button
                        ){
 
   def showVictory(healthProgress: Double, score: Int): Unit = {
     val healthPercentage = (healthProgress * 100).toInt
+    val player: Player = MainApp.currentPlayer
     statusLabel.text = "Victory!!"
     healthStatus.text = s"Health Remaining: $healthPercentage"
     zombieKilled.text = s"Zombies Killed: $score"
+    player.recordZombiesKilled(score)
+    player.save()
   }
 
   def gameOver(healthProgress: Double, score: Int): Unit = {
@@ -34,6 +39,10 @@ class EndGameController(
 
   def handleExit(): Unit = {
     System.exit(0)
+  }
+
+  def handleLeaderBoard(): Unit = {
+    MainApp.showLeaderBoard()
   }
 
 }

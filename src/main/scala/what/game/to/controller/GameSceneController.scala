@@ -20,7 +20,6 @@ class GameSceneController(
   private var currentZombieCount = 0
   private var gameRunning = true
   private var zombieController: Option[ZombieController] = None
-  private var timer: Option[Timer] = None
   private val victim = new Person(gameArea)
   private val scoreManager = new Score(scoreLabel)
 
@@ -109,7 +108,6 @@ class GameSceneController(
 
   private def startTimer(): Unit = {
     val time = new Timer(totalTime, timerLabel, difficulty.spawnZombieTime)
-    timer = Some(time)
     time.start(() => createZombies(difficulty.spawnZombieNum), () => checkGameOver(true))
     }
 
