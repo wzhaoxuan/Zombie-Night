@@ -14,6 +14,7 @@ class Score(private val scoreLabel: Label) {
     score += 1
     updateScoreLabel()
     player.recordZombiesKilled(score)
+    println(player.timer.value)
     player.save()
   }
 
