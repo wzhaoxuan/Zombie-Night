@@ -21,9 +21,12 @@ class Timer(private val totalTime: Int, private val timerLabel: Label, private v
           if (gameRunning) {
             remainingTime -= 1
             timerLabel.text = remainingTime.toString
-            player.recordTimer(remainingTime)
             if (remainingTime <= 0) {
+              println(remainingTime)
               timeUp(checkGameOver)
+              player.recordTimer(remainingTime)
+            }
+            if (remainingTime > 0){
               player.recordTimer(remainingTime)
             }
           }

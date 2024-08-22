@@ -24,7 +24,7 @@ class Difficulty(var level: String) {
         "Normal Zombies and Speed Zombies. Understanding the characteristics of these zombie types is " +
         "essential for effective gameplay."
     case "Hard" =>
-      spawnZombieNum = 15
+      spawnZombieNum = 10
       spawnZombieTime = 15
       maxZombies = 150
       description = "HardMode: Given a 120-second duration, your goal is to rescue the person from being " +
