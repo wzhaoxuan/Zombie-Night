@@ -15,7 +15,8 @@ class Player(var name: StringProperty) {
   }
 
   def recordTimer(amount: Int): Unit = {
-    timer.value = amount
+    this.timer.value = amount
+    println(timer.value)
   }
 
   def recordZombiesKilled(count: Int): Unit = {
@@ -31,6 +32,7 @@ class Player(var name: StringProperty) {
   }
 
   def save(): Try[Int] = { // create or update player record
+    println(timer.value)
     if (!isExist) {
       Try(DB autoCommit { implicit session =>
         sql"""

@@ -14,15 +14,12 @@ class EndGameController(
                          private val exit: Button,
                          private val leaderBoard: Button
                        ){
-  val player: Player = MainApp.currentPlayer
 
   def showVictory(healthProgress: Double, score: Int): Unit = {
     val healthPercentage = (healthProgress * 100).toInt
     statusLabel.text = "Victory!!"
     healthStatus.text = s"Health Remaining: $healthPercentage%"
     zombieKilled.text = s"Zombies Killed: $score"
-    player.recordZombiesKilled(score)
-    player.save()
   }
 
   def gameOver(healthProgress: Double, score: Int): Unit = {
