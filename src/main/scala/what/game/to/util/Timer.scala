@@ -6,7 +6,7 @@ import scalafx.util.Duration
 import what.game.to.MainApp
 import what.game.to.model.Player
 
-class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
+class Timer(private val totalTime: Int, private val timerLabel: Label, private val spawnZombieTime: Int) {
   private var remainingTime = totalTime
   private var gameRunning = true
   private var timeLine: Timeline = _
@@ -24,7 +24,7 @@ class Timer(totalTime: Int, timerLabel: Label, spawnZombieTime: Int) {
             player.recordTimer(remainingTime)
             if (remainingTime <= 0) {
               timeUp(checkGameOver)
-              player.recordTimer(0)
+              player.recordTimer(remainingTime)
             }
           }
         })

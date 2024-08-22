@@ -21,8 +21,7 @@ class ZombieController(
                         val checkGameOver: () => Unit,
                         var gameRunning: Boolean
                       ) {
-  private val timelines = ObservableBuffer[Timeline]()
-  private var zombieMap: Map[ImageView, Timeline] = Map()
+  private val timelines: ObservableBuffer[Timeline] = ObservableBuffer[Timeline]()
 
   def createZombies(zombies: List[Zombie]): Unit = {
     println("Creating zombies")
@@ -85,7 +84,6 @@ class ZombieController(
         })
       }
       timelines += timeline
-      zombieMap += (zombie -> timeline)
       timeline.play()
     }
   }

@@ -1,8 +1,8 @@
 package what.game.to.model
 
 
-case class ZombieInfo(imagePath: String, zombieName: String, zombieSpeed: Int, zombieRequiredClicks: Int,
-                      zombieDamage: Int)
+case class ZombieInfo(val imagePath: String, val zombieName: String, val zombieSpeed: Int,
+                      val zombieRequiredClicks: Int, val zombieDamage: Int)
 
 object ZombieInfo {
   val normalZombie: ZombieInfo = ZombieInfo("/Images/Zombie/NormalZombie.gif", "Normal Zombie", 4, 3, 2)

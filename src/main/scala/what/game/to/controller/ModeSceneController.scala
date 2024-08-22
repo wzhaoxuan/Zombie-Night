@@ -17,19 +17,19 @@ class ModeSceneController(
   def handleEasyButton(): Unit = {
     MainApp.setDifficulty("Easy")
     player.recordDifficulty("Easy")
-    MainApp.showRule()
+    MainApp.showRuleScene()
   }
 
   def handleNormalButton(): Unit = {
     MainApp.setDifficulty("Normal")
     player.recordDifficulty("Normal")
-    MainApp.showRule()
+    MainApp.showRuleScene()
   }
 
   def handleHardButton(): Unit = {
     MainApp.setDifficulty("Hard")
     player.recordDifficulty("Hard")
-    MainApp.showRule()
+    MainApp.showRuleScene()
   }
 
   def backMainPage(): Unit = {

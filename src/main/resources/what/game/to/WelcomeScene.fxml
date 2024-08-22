@@ -17,20 +17,21 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="244.0" minHeight="10.0" prefHeight="244.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="221.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="335.0" minHeight="10.0" prefHeight="297.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="127.0" prefWidth="765.0" styleClass="welcome-title" stylesheets="@style.css" text="ZombieNight" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="127.0" prefWidth="765.0" styleClass="title" stylesheets="@style.css" text="ZombieNight" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                     <font>
                         <Font name="System Bold" size="65.0" />
                     </font>
                 </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                      <Button layoutX="280.0" layoutY="61.0" mnemonicParsing="false" onAction="#getStart" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Enter" />
-                  <Button layoutX="280.0" layoutY="146.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Exit" />
+                      <Button layoutX="280.0" layoutY="44.0" mnemonicParsing="false" onAction="#getStart" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Enter" />
+                  <Button layoutX="280.0" layoutY="190.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="96.0" styleClass="welcome-button" stylesheets="@style.css" text="Exit" />
+                  <Button layoutX="280.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleLeaderBoard" prefHeight="40.0" prefWidth="96.0" styleClass="welcomeLeaderBoardButton" stylesheets="@style.css" text="LeaderBoard" />
                </children>
             </AnchorPane>
             </children>

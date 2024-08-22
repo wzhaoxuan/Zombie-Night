@@ -5,17 +5,17 @@ import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.{Button, TableColumn, TableView}
 import scalafx.beans.binding.Bindings
 import scalafxml.core.macros.sfxml
+import what.game.to.MainApp
 import what.game.to.model.Player
 
 @sfxml
 class LeaderBoardController(
-                             val playerTable: TableView[Player],
-                             val nameColumn: TableColumn[Player, String],
-                             val levelColumn: TableColumn[Player, String],
-                             val timeColumn: TableColumn[Player, Int],
-                             val zombieKilledColumn: TableColumn[Player, Int],
-                             val victimHealthColumn: TableColumn[Player, Int],
-                             val backButton: Button
+                             private val playerTable: TableView[Player],
+                             private val nameColumn: TableColumn[Player, String],
+                             private val levelColumn: TableColumn[Player, String],
+                             private val timeColumn: TableColumn[Player, Int],
+                             private val zombieKilledColumn: TableColumn[Player, Int],
+                             private val mainPageButton: Button
                            ) {
   private val playerScores: ObservableBuffer[Player] = ObservableBuffer[Player]()
 
@@ -40,9 +40,9 @@ class LeaderBoardController(
     Bindings.createObjectBinding[Int](() => cellData.value.zombiesKilled.value, cellData.value.zombiesKilled)
   }
 
-//  victimHealthColumn.cellValueFactory = { cellData =>
-//    Bindings.createObjectBinding[Int](() => cellData.value.victimHealth.value, cellData.value.victimHealth)
-//  }
+  def handleMainPage(): Unit = {
+    MainApp.showWelcome()
+  }
 }
 
 

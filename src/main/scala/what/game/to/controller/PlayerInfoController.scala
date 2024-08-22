@@ -8,13 +8,12 @@ import what.game.to.MainApp
 
 @sfxml
 class PlayerInfoController(_name: TextField){
-  private val player = MainApp.currentPlayer
+  val player = MainApp.currentPlayer
 
   def createPlayer(): Unit = { //create player based on name input
     if (StringProperty(_name.text.value)().nonEmpty) { //validation checking for empty name
       player.name = StringProperty(_name.text.value)
       println("User created with name" + player.name)
-      player.save()
       MainApp.showModeScene()
     }
   }

@@ -9,7 +9,6 @@ class Player(var name: StringProperty) {
   var difficulty: StringProperty = StringProperty("")
   var timer: IntegerProperty = IntegerProperty(0)
   var zombiesKilled: IntegerProperty = IntegerProperty(0)
-//  var victimHealth: IntegerProperty = IntegerProperty(0)
 
   def recordDifficulty(difficulty: String): Unit = {
     this.difficulty.value = difficulty
@@ -23,16 +22,12 @@ class Player(var name: StringProperty) {
     zombiesKilled.value = count
   }
 
-//  def recordVictimHealth(health: Int): Unit = {
-//    victimHealth.value = health
-//  }
 
   def clear(): Unit = { // reset
     name.value = "Default"
     difficulty.value = ""
     timer.value = 0
     zombiesKilled.value = 0
-//    victimHealth.value = 0
   }
 
   def save(): Try[Int] = { // create or update player record
@@ -98,7 +93,6 @@ object Player extends Database {
         player.recordDifficulty(rs.string("difficulty"))
         player.recordTimer(rs.int("timer"))
         player.recordZombiesKilled(rs.int("zombies_killed"))
-//        player.recordVictimHealth(rs.int("victim_health"))
         player
       }).list.apply()
     }

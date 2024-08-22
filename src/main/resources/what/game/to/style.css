@@ -1,27 +1,16 @@
-/*ImageView {*/
-/*    !*-fx-image: url("/Images/NormalZombie.gif");*!*/
-/*    -fx-fit-width: 300;*/
-/*    -fx-fit-height: 200;*/
-/*    -fx-preserve-ratio: true;*/
-/*    -fx-alignment: center;*/
-/*}*/
 
 .background, .rule{
     -fx-background-image: url("/Images/Backgroud/cartoon.jpg");
 }
 
-.welcome-title, .mode-text{
+.title, .mode-text{
     -fx-text-fill: #ababab;
     -fx-font-family: "Footlight MT Light";
     -fx-font-size: 120;
 
 }
 
-.button{
-    -fx-background-image: url("/Images/Power/Bomb.gif");
-}
-
-.welcome-button{
+.welcome-button, .start-button, .welcomeLeaderBoardButton, .mainpage-button{
     -fx-background-color: black;
     -fx-font-family: "Franklin Gothic Heavy";
     -fx-text-fill: white;
@@ -31,16 +20,20 @@
     -fx-font-size: 25;
 }
 
-.welcome-button:hover{
+.welcome-button:hover, .start-button:hover, .welcomeLeaderBoardButton:hover, .mainpagebutton:hover{
     -fx-opacity: 100%;
     -fx-cursor: pointer;
+}
+
+.text-field{
+    -fx-opacity: 60%;
 }
 
 .mode-text{
     -fx-font-size: 100;
 }
 
-.easyButton, .normalButton, .hardButton, .backButton, .rule-StartButton,.playAgain,.exit{
+.easyButton, .normalButton, .hardButton, .backButton, .rule-StartButton,.playAgain,.exit, .endGameLeaderbBoardButton{
     -fx-font-family: "Arial Rounded MT Bold";
     -fx-text-fill: white;
     -fx-font-size: 25;
@@ -60,11 +53,11 @@
     -fx-scale-y: 1.1;
 }
 
-.normalButton{
+.normalButton, .endGameLeaderbBoardButton{
     -fx-background-color: Grey;
 }
 
-.normalButton:hover{
+.normalButton:hover, .endGameLeaderbBoardButton:hover{
     -fx-background-color: #a0a0a0;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
@@ -142,4 +135,13 @@
     -fx-text-fill: #ababab;
     -fx-font-size: 65;
     -fx-padding: 10 10 10 10;
+}
+
+.table-view{
+    -fx-opacity: 90%;
+    -fx-base: #036969;
+    -fx-control-inner-background: #1ca9a9;
+    -fx-background-color: #036969;
+    -fx-font-family: "Footlight MT Light";
+    -fx-font-size: 20px;
 }

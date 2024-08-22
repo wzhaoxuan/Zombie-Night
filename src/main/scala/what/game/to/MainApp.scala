@@ -21,7 +21,7 @@ object MainApp extends JFXApp {
 
   // Load RootLayout.fxml
   val rootResource = getClass.getResource("WelcomeScene.fxml")
-  val loader = new FXMLLoader(rootResource, NoDependencyResolver)
+  val loader: FXMLLoader = new FXMLLoader(rootResource, NoDependencyResolver)
   loader.load()
   var rootLayout: AnchorPane = loader.getRoot[javafx.scene.layout.AnchorPane] // Convert to ScalaFX AnchorPane
 
@@ -65,7 +65,7 @@ object MainApp extends JFXApp {
     }
   }
 
-  def showRule(): Unit = {
+  def showRuleScene(): Unit = {
     val ruleSceneResource = getClass.getResource("RuleScene.fxml")
     val ruleSceneLoader = new FXMLLoader(ruleSceneResource, NoDependencyResolver)
     ruleSceneLoader.load()
@@ -109,7 +109,7 @@ object MainApp extends JFXApp {
     }
   }
 
-  def showLeaderBoard(): Unit = {
+  def showLeaderBoardScene(): Unit = {
     val leaderBoardSceneResource = getClass.getResource("LeaderBoardScene.fxml")
     val leaderBoardSceneLoader = new FXMLLoader(leaderBoardSceneResource, NoDependencyResolver)
     leaderBoardSceneLoader.load()

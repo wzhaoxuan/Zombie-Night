@@ -34,12 +34,12 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="210.0" prefWidth="362.0">
                            <children>
-                              <Button fx:id="exit" alignment="CENTER" layoutX="70.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="Exit" />
+                              <Button fx:id="leaderBoard" alignment="CENTER" layoutX="65.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleLeaderBoard" prefHeight="71.0" prefWidth="102.0" styleClass="endGameLeaderbBoardButton" stylesheets="@style.css" text="LeaderBoard" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="217.0" prefWidth="362.0">
                            <children>
-                              <Button fx:id="leaderBoard" alignment="CENTER" layoutX="75.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleLeaderBoard" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="LeaderBoard" />
+                              <Button fx:id="exit" alignment="CENTER" layoutX="82.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="71.0" prefWidth="102.0" styleClass="exit" stylesheets="@style.css" text="Exit" />
                            </children>
                         </AnchorPane>
                      </children>

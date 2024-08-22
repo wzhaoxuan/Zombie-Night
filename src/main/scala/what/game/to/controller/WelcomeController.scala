@@ -9,6 +9,11 @@ class WelcomeController{
   def getStart(): Unit = {
     MainApp.showPlayerScene()
   }
+
+  def handleLeaderBoard(): Unit = {
+    MainApp.showLeaderBoardScene()
+  }
+
   def exit(): Unit = {
     System.exit(0)
   }

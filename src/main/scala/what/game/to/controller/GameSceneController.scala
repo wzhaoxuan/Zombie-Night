@@ -22,6 +22,7 @@ class GameSceneController(
   private var zombieController: Option[ZombieController] = None
   private val victim = new Person(gameArea)
   private val scoreManager = new Score(scoreLabel)
+  private var timer: Option[Timer] = None
 
   def initialize(): Unit = {
     println("Initializing GameSceneController")
@@ -54,14 +55,14 @@ class GameSceneController(
           val normalZombies = math.min(zombieNum, zombiesLeft)
           (normalZombies, 0, 0)
         case "Normal" =>
-          val maxNormalZombies = zombiesLeft / 2
-          val maxSpeedZombies = zombiesLeft
-          (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies), 0)
+          val normalZombies = math.min(zombieNum / 2, zombiesLeft / 2)
+          val speedZombies = math.min(zombieNum - normalZombies, zombiesLeft - normalZombies)
+          (normalZombies, speedZombies, 0)
         case "Hard" =>
-          val maxNormalZombies = zombiesLeft / 2
-          val maxSpeedZombies = zombiesLeft
-          val maxDefenseZombies = zombiesLeft / 2
-          (math.min(zombieNum, maxNormalZombies), math.min(zombieNum, maxSpeedZombies), math.min(zombieNum, maxDefenseZombies))
+          val normalZombies = math.min(zombieNum / 3, zombiesLeft / 3)
+          val speedZombies = math.min(zombieNum / 3, zombiesLeft / 3)
+          val defenseZombies = math.min(zombieNum - normalZombies - speedZombies, zombiesLeft - normalZombies - speedZombies)
+          (normalZombies, speedZombies, defenseZombies)
       }
 
       println("Creating zombies...")
@@ -95,12 +96,14 @@ class GameSceneController(
   }
 
   private def checkGameOver(timeRanOut: Boolean = false): Unit = {
-    if (healthPoint.progress.value <= 0) {
+    if (healthPoint.progress.value <= 0 && gameRunning) {
       gameRunning = false
+      timer.foreach(_.stop())
       stopAllZombies()
       MainApp.showEndGameScene(healthPoint.progress.value, scoreManager.getScore)
-    } else if (scoreManager.getScore >= difficulty.maxZombies || timeRanOut) {
+    } else if ((scoreManager.getScore >= difficulty.maxZombies || timeRanOut) && gameRunning) {
       gameRunning = false
+      timer.foreach(_.stop())
       stopAllZombies()
       MainApp.showEndGameScene(healthPoint.progress.value, scoreManager.getScore)
     }
@@ -108,6 +111,7 @@ class GameSceneController(
 
   private def startTimer(): Unit = {
     val time = new Timer(totalTime, timerLabel, difficulty.spawnZombieTime)
+    this.timer = Some(time)
     time.start(() => createZombies(difficulty.spawnZombieNum), () => checkGameOver(true))
     }
 
@@ -116,8 +120,4 @@ class GameSceneController(
     gameArea.children.clear()
   }
 
-  def exit(): Unit = {
-//    MainApp.showModeScene()
-    System.exit(0)
-  }
 }
